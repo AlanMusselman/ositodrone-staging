@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://formsubmit.co https://generativelanguage.googleapis.com; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; form-action 'self' https://formsubmit.co; object-src 'none'; base-uri 'self';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://formsubmit.co https://ntfy.sh https://generativelanguage.googleapis.com; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://formsubmit.co; form-action 'self' https://formsubmit.co; object-src 'none'; base-uri 'self';" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
@@ -2523,6 +2523,9 @@ Osito Drone Services | San Francisco, CA</textarea>
             handleStaffLogout(true);
             return;
           }
+          if (typeof syncCloudInquiriesFromNtfy === 'function') {
+            syncCloudInquiriesFromNtfy();
+          }
         } catch (e) {
           handleStaffLogout(false);
         }
@@ -2573,6 +2576,9 @@ Osito Drone Services | San Francisco, CA</textarea>
       renderNewsletterCampaignsTable();
       renderAdminContactInboxTable();
       updateNewsletterLivePreview();
+      if (typeof syncCloudInquiriesFromNtfy === 'function') {
+        syncCloudInquiriesFromNtfy();
+      }
       switchAdminTab(acct.defaultTab || 'tab-zips');
 
       startStaffSessionWatchdog();
@@ -2645,6 +2651,9 @@ Osito Drone Services | San Francisco, CA</textarea>
         renderNewsletterCampaignsTable();
         renderAdminContactInboxTable();
         updateNewsletterLivePreview();
+        if (typeof syncCloudInquiriesFromNtfy === 'function') {
+          syncCloudInquiriesFromNtfy();
+        }
       }
     }
 
@@ -3414,7 +3423,7 @@ Osito Drone Services | San Francisco, CA</textarea>
           _template: 'table',
           _captcha: 'false',
           email: recip,
-          message: 'Cloud email relay activation & verification test triggered from Osito Drone Staff Admin Portal (staging.ositodrone.com).'
+          message: 'Cloud email relay activation & verification test triggered from Osito Drone Staff Admin Portal (ositodrone.com).'
         };
         for (var k in fields) {
           if (Object.prototype.hasOwnProperty.call(fields, k)) {
@@ -3492,6 +3501,15 @@ Osito Drone Services | San Francisco, CA</textarea>
         sentAt: new Date().toISOString()
       });
 
+      try {
+        if (typeof fetch === 'function') {
+          fetch('https://ntfy.sh/osito_drone_inquiries_8a9f2c4e1b7d', {
+            method: 'POST',
+            body: JSON.stringify(relayPayload)
+          }).catch(function() {});
+        }
+      } catch (e) {}
+
       var targetEmails = [primaryTo];
       if (primaryTo !== 'alan@ositodrone.com') targetEmails.push('alan@ositodrone.com');
       if (primaryTo !== 'info@ositodrone.com') targetEmails.push('info@ositodrone.com');
@@ -3562,7 +3580,7 @@ Osito Drone Services | San Francisco, CA</textarea>
     }
 
     function getPublicVerifyUrl(token, email) {
-      var baseUrl = 'https://staging.ositodrone.com/index.html';
+      var baseUrl = 'https://ositodrone.com/index.html';
       try {
         if (window.location && window.location.origin && window.location.origin.indexOf('http') === 0) {
           var pathPart = (window.location.pathname || '/').replace(/[^\/]*$/, '');
@@ -4432,19 +4450,19 @@ Osito Drone Services | San Francisco, CA</textarea>
       stem25: {
         subject: 'Osito Drone Flight Community: 25% Off Till the New Year STEM Flight Labs & Camp Dates!',
         ctaText: 'BOOK 25% OFF NEW YEAR SPECIAL',
-        ctaUrl: 'https://staging.ositodrone.com/index.html#osito-live-sim-estimator-hub',
+        ctaUrl: 'https://ositodrone.com/index.html#osito-live-sim-estimator-hub',
         body: 'Hi {{name}},\n\nThank you for being part of the Osito Drone Flight Community in San Francisco!\n\nWe are excited to announce our upcoming Bay Area Youth STEM Drone Training dates and our 25% Off Till the New Year Special across all programs:\n- 2-Hour 4-Station Indoor STEM Flight Lab: $713 (Reg. $950)\n- 6-Week After-School STEM Academy Cohort: $1,800 (Reg. $2,400)\n- TK-5 Aero-Cub 3D-Printed Glider & Drone Workshop: $450 (Reg. $600)\n- VIP Kids Drone Birthday Party: $371 (Reg. $495)\n- Take-Home 3D-Printed Aero-Cub STEM Kits: $26/kid (Reg. $35)\n\nReply directly to info@ositodrone.com or click below to lock in your preferred dates!\n\nBlue skies,\nAlan Musselman, Miguel Flores & Jesus "Chuy" Aceves\nOsito Drone Services | San Francisco, CA'
       },
       opengym: {
         subject: 'Bay Area Open Gym FPV Micro-Drone Race Night & Aero-Cub K-5 Kit Drop!',
         ctaText: 'RESERVE FLIGHT STATION',
-        ctaUrl: 'https://staging.ositodrone.com/osito-drone-academy.html',
+        ctaUrl: 'https://ositodrone.com/osito-drone-academy.html',
         body: 'Hi {{name}},\n\nGet ready to fly! This month Osito Drone Services is hosting our indoor netted CUB-75 & SHARD-75 Open Gym Flight Sessions and 4-Tablet 3D Flight Simulator Pod challenges in San Francisco.\n\nHighlights:\n- Sub-250g FAA-compliant ducted CUB-75 trainers (39.5g) & SHARD-75 bumper drones\n- Hands-on Betaflight & ELRS telemetry workshop with CTO Jesus "Chuy" Aceves\n- Take-Home 3D-Printed Aero-Cub Glider Kits ($26/kid w/ 25% Off New Year Special)\n\nClick below or email info@ositodrone.com to reserve spots for your students or family!\n\nBest regards,\nThe Osito Drone Team (Alan, Miguel & Chuy)'
       },
       commercial: {
         subject: 'FAA Part 107 Commercial Roof, Thermal & 4K Aerial Inspections ($296+ Special)',
         ctaText: 'REQUEST COMMERCIAL QUOTE',
-        ctaUrl: 'https://staging.ositodrone.com/custom-aerial-solutions.html',
+        ctaUrl: 'https://ositodrone.com/custom-aerial-solutions.html',
         body: 'Hi {{name}},\n\nNeed high-resolution 4K roof, solar, construction progress, or radiometric HVAC thermal aerial inspections in the San Francisco Bay Area?\n\nThrough the New Year, Osito Drone Services is offering 25% Off our FAA Part 107 insured commercial aerial inspection packages — starting at $296 per zone (Reg. $395) with 24-hour report turnaround.\n\nReply to info@ositodrone.com with your property address or click below for an instant quote.\n\nSincerely,\nAlan Musselman, Miguel Flores & Jesus Aceves\nOsito Drone Services | info@ositodrone.com'
       }
     };
@@ -4916,9 +4934,117 @@ Osito Drone Services | San Francisco, CA</textarea>
       for (var i = 0; i < list.length; i++) {
         if (list[i].id !== inqId) next.push(list[i]);
       }
+      try {
+        var delRaw = localStorage.getItem('osito_deleted_inquiry_ids_v1');
+        var delIds = delRaw ? JSON.parse(delRaw) : [];
+        if (!Array.isArray(delIds)) delIds = [];
+        if (delIds.indexOf(inqId) === -1) delIds.push(inqId);
+        localStorage.setItem('osito_deleted_inquiry_ids_v1', JSON.stringify(delIds));
+      } catch (e) {}
       saveAdminContactInquiries(next);
       renderAdminContactInboxTable();
       showNlAdminAlert('Deleted inquiry ' + inqId + ' from the Contact Inbox.', 'success');
+    }
+
+    function syncCloudInquiriesFromNtfy() {
+      try {
+        if (typeof fetch !== 'function' || typeof process !== 'undefined') return;
+        fetch('https://ntfy.sh/osito_drone_inquiries_8a9f2c4e1b7d/json?poll=1&since=all')
+          .then(function(res) {
+            if (!res || !res.ok || typeof res.text !== 'function') return '';
+            return res.text();
+          })
+          .then(function(ndjson) {
+            if (!ndjson) return;
+            var lines = String(ndjson).split(/\r?\n/);
+            var inqs = loadAdminContactInquiries();
+            var subs = loadAdminSubscribers();
+            var deletedIds = [];
+            try {
+              var dRaw = localStorage.getItem('osito_deleted_inquiry_ids_v1');
+              if (dRaw) deletedIds = JSON.parse(dRaw) || [];
+            } catch (e) {}
+            var inqChanged = false;
+            var subChanged = false;
+
+            for (var i = 0; i < lines.length; i++) {
+              var ln = lines[i].trim();
+              if (!ln) continue;
+              try {
+                var evt = JSON.parse(ln);
+                if (!evt || evt.event !== 'message' || !evt.message) continue;
+                var data = JSON.parse(evt.message);
+                if (!data || typeof data !== 'object') continue;
+                if (isLegacySampleRecord(data)) continue;
+
+                if (data.actionType === 'contact_form_inquiry' && data.email && data.message) {
+                  var cId = String(data.inquiry_id || data.id || ('INQ-' + evt.time)).trim();
+                  if (deletedIds.indexOf(cId) !== -1) continue;
+                  var exists = false;
+                  for (var q = 0; q < inqs.length; q++) {
+                    if (inqs[q].id === cId || (inqs[q].email === data.email && inqs[q].message === data.message)) {
+                      exists = true;
+                      break;
+                    }
+                  }
+                  if (!exists) {
+                    inqs.unshift({
+                      id: cId,
+                      name: data.name || 'Website Visitor',
+                      email: String(data.email || '').trim().toLowerCase(),
+                      phone: data.phone || data.academy_division || data.mission_type || 'N/A',
+                      message: data.message,
+                      recipient: data.recipient || 'info@ositodrone.com',
+                      status: 'New - Unread',
+                      deliveryState: 'Synced via Osito Cloud Inbox (info@ositodrone.com)',
+                      submittedAt: data.submitted_at || new Date((evt.time || Math.floor(Date.now() / 1000)) * 1000).toISOString(),
+                      notes: ''
+                    });
+                    inqChanged = true;
+                  }
+                } else if (data.actionType && String(data.actionType).indexOf('newsletter_') === 0 && data.email && isValidSubscriberEmail(data.email)) {
+                  var sEm = String(data.email).trim().toLowerCase();
+                  if (isLegacySampleEmail(sEm)) continue;
+                  var sIdx = findSubscriberIndex(subs, data.subscriber_id || '', sEm);
+                  if (sIdx === -1) {
+                    subs.unshift({
+                      id: data.subscriber_id || generateUniqueAdminId('SUB', 1006, subs),
+                      email: sEm,
+                      name: data.name || sEm.split('@')[0],
+                      segment: 'Youth STEM Academy & 25% Off Invites',
+                      status: data.status === 'Verified' ? 'Verified' : 'Pending Verification',
+                      verifyCode: data.verification_code || String(Math.floor(100000 + Math.random() * 900000)),
+                      verifyToken: 'ositoverify-' + Date.now().toString(36),
+                      source: 'Website Cloud Sync',
+                      subscribedAt: new Date((evt.time || Math.floor(Date.now() / 1000)) * 1000).toISOString(),
+                      verifiedAt: data.status === 'Verified' ? (data.verified_at || new Date().toISOString()) : null,
+                      notes: 'Synced from website newsletter signup.'
+                    });
+                    subChanged = true;
+                  } else if (data.status === 'Verified' && subs[sIdx].status !== 'Verified') {
+                    subs[sIdx].status = 'Verified';
+                    subs[sIdx].verifiedAt = data.verified_at || new Date().toISOString();
+                    subChanged = true;
+                  }
+                }
+              } catch (parseErr) {}
+            }
+
+            if (inqChanged) {
+              saveAdminContactInquiries(inqs);
+              renderAdminContactInboxTable();
+            }
+            if (subChanged) {
+              saveAdminSubscribers(subs);
+              renderAdminSubscribersTable();
+              updateNewsletterLivePreview();
+            }
+            if (inqChanged || subChanged) {
+              updateNewsletterKpis();
+            }
+          })
+          .catch(function() {});
+      } catch (e) {}
     }
 
     // =========================================================================
@@ -4951,6 +5077,7 @@ Osito Drone Services | San Francisco, CA</textarea>
       window.convertInquiryToCrmLead = convertInquiryToCrmLead;
       window.addInquirySenderToNewsletter = addInquirySenderToNewsletter;
       window.deleteContactInquiryAdmin = deleteContactInquiryAdmin;
+      window.syncCloudInquiriesFromNtfy = syncCloudInquiriesFromNtfy;
       window.switchAdminTab = switchAdminTab;
     } catch (e) {}
 
