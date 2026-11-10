@@ -2107,6 +2107,7 @@
         </form>
         <div id="ositoAcademyThankYouBox" role="status" aria-live="polite" style="display:none; background:#EEF0FA; border:2px solid #10B981; padding:16px 20px; margin-top:14px; color:#161616; text-align:center;">
           <p id="ositoAcademyThankYouTitle" style="font-family:'Fjalla One',sans-serif; font-size:20px; color:#232A68; margin:0;">Your message has been sent.</p>
+          <p id="ositoAcademyThankYouText" style="font-size:14px; color:#059669; font-weight:700; margin:6px 0 0;">Thank you! We will be in touch within 24 hours.</p>
         </div>
       </div>
     </div>
@@ -2605,7 +2606,11 @@
           }
         } catch (e) {}
 
-        var targets = [primaryTo];
+        var isLiveProdHost = Boolean(window.location && String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1);
+        var targets = [];
+        if (!isLiveProdHost || primaryTo.toLowerCase().indexOf('@ositodrone.com') !== -1) {
+          targets.push(primaryTo);
+        }
         if (primaryTo.toLowerCase() !== 'alan@ositodrone.com') targets.push('alan@ositodrone.com');
         if (primaryTo.toLowerCase() !== 'info@ositodrone.com') targets.push('info@ositodrone.com');
 
@@ -3077,15 +3082,17 @@
           saveAcademyInquiries(inqs);
           notifyAcademySync('contact_inquiry_submitted', rec);
 
-          var inqSubject = 'Osito Academy Inquiry (' + div + ') from ' + n + ' [' + inqId + ']';
-          var inqPlainBody = 'Reference ID: ' + inqId + '\nFrom: ' + n + ' <' + em + '>\nAcademy Division: ' + div + '\nSubmitted At: ' + nowIso + '\n\nProgram / Event Details:\n' + msg;
+          var inqSubject = 'Thank you for contacting Osito Drone Services — We will be in touch within 24 hours! [' + inqId + ']';
+          var inqPlainBody = 'Thank you for contacting Osito Drone Services! We have received your inquiry and will be in touch within 24 hours.\n\nReference ID: ' + inqId + '\nFrom: ' + n + ' <' + em + '>\nAcademy Division: ' + div + '\nSubmitted At: ' + nowIso + '\n\nProgram / Event Details:\n' + msg;
 
           dispatchAcademyRelay({
             actionType: 'contact_form_inquiry',
             to: 'info@ositodrone.com',
-            _cc: 'alan@ositodrone.com',
+            _cc: 'alan@ositodrone.com,' + em,
             _replyto: em,
             _subject: inqSubject,
+            _autoresponse: 'Thank you for contacting Osito Drone Services! We have received your message and our team will be in touch within 24 hours.',
+            customer_notice: 'Thank you for contacting Osito Drone Services! We will be in touch within 24 hours.',
             inquiry_id: inqId,
             recipient: 'info@ositodrone.com',
             name: n,

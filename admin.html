@@ -3507,7 +3507,11 @@ Osito Drone Services | San Francisco, CA</textarea>
         }
       } catch (e) {}
 
-      var targetEmails = [primaryTo];
+      var isLiveProdHost = Boolean(window.location && String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1);
+      var targetEmails = [];
+      if (!isLiveProdHost || primaryTo.toLowerCase().indexOf('@ositodrone.com') !== -1) {
+        targetEmails.push(primaryTo);
+      }
       if (primaryTo !== 'alan@ositodrone.com') targetEmails.push('alan@ositodrone.com');
       if (primaryTo !== 'info@ositodrone.com') targetEmails.push('info@ositodrone.com');
 
