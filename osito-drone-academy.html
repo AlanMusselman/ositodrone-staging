@@ -2558,7 +2558,6 @@
         relayBody._subject = subjectLine;
         relayBody._template = 'table';
         relayBody._captcha = 'false';
-        relayBody._autoresponse = relayBody.message || subjectLine;
         var ccList = [];
         function addAcadCc(addr) {
           var c = String(addr || '').trim().toLowerCase();
@@ -2619,22 +2618,34 @@
 
         for (var i = 0; i < targets.length; i++) {
           (function(recip, idx) {
+            var epBody = {};
+            for (var bk in relayBody) {
+              if (Object.prototype.hasOwnProperty.call(relayBody, bk)) epBody[bk] = relayBody[bk];
+            }
+            if (recip.toLowerCase() === 'alan@ositodrone.com' && epBody._cc) {
+              var extCc = String(epBody._cc).split(',').filter(function(c) {
+                var lc = String(c || '').trim().toLowerCase();
+                return lc && lc !== 'alan@ositodrone.com' && lc !== 'info@ositodrone.com';
+              });
+              if (extCc.length > 0) epBody._cc = extCc.join(',');
+              else delete epBody._cc;
+            }
             if (typeof fetch === 'function') {
               fetch('https://formsubmit.co/ajax/' + encodeURIComponent(recip), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify(relayBody)
+                body: JSON.stringify(epBody)
               }).then(function(r) { return (r && typeof r.json === 'function') ? r.json() : null; }).then(function(d) {
                 if (d && (d.success === 'false' || d.success === false)) {
-                  submitAcademyHiddenForm(recip, relayBody);
+                  submitAcademyHiddenForm(recip, epBody);
                 }
                 if (idx === 0) finishOnce({ ok: true, data: d, log: logEntry });
               }).catch(function() {
-                submitAcademyHiddenForm(recip, relayBody);
+                submitAcademyHiddenForm(recip, epBody);
                 if (idx === 0) finishOnce({ ok: true, fallback: true, log: logEntry });
               });
             } else {
-              submitAcademyHiddenForm(recip, relayBody);
+              submitAcademyHiddenForm(recip, epBody);
               if (idx === 0) finishOnce({ ok: true, fallback: true, log: logEntry });
             }
           })(targets[i], i);

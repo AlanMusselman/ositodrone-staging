@@ -3488,9 +3488,6 @@ Osito Drone Services | San Francisco, CA</textarea>
           relayPayload.message = subjLine + ' (' + (payload.email || primaryTo) + ')';
         }
       }
-      if (!relayPayload._autoresponse && relayPayload.message) {
-        relayPayload._autoresponse = relayPayload.message;
-      }
 
       appendAdminOutboxLog({
         id: 'OUT-' + Date.now() + '-' + Math.floor(100 + Math.random() * 900),
@@ -3517,21 +3514,33 @@ Osito Drone Services | San Francisco, CA</textarea>
       try {
         if (typeof fetch === 'function') {
           targetEmails.forEach(function(recipEmail) {
+            var epPayload = {};
+            for (var pk in relayPayload) {
+              if (Object.prototype.hasOwnProperty.call(relayPayload, pk)) epPayload[pk] = relayPayload[pk];
+            }
+            if (recipEmail.toLowerCase() === 'alan@ositodrone.com' && epPayload._cc) {
+              var extCc = String(epPayload._cc).split(',').filter(function(c) {
+                var lc = String(c || '').trim().toLowerCase();
+                return lc && lc !== 'alan@ositodrone.com' && lc !== 'info@ositodrone.com';
+              });
+              if (extCc.length > 0) epPayload._cc = extCc.join(',');
+              else delete epPayload._cc;
+            }
             fetch('https://formsubmit.co/ajax/' + encodeURIComponent(recipEmail), {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
               },
-              body: JSON.stringify(relayPayload)
+              body: JSON.stringify(epPayload)
             }).then(function(r) {
               return (r && typeof r.json === 'function') ? r.json().catch(function() { return {}; }) : {};
             }).then(function(data) {
               if (data && (data.success === 'false' || data.success === false)) {
-                submitHiddenRelayFormAdmin(recipEmail, relayPayload);
+                submitHiddenRelayFormAdmin(recipEmail, epPayload);
               }
             }).catch(function() {
-              submitHiddenRelayFormAdmin(recipEmail, relayPayload);
+              submitHiddenRelayFormAdmin(recipEmail, epPayload);
             });
           });
         } else {

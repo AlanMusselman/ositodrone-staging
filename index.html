@@ -2678,7 +2678,6 @@
           relayPayload.message = subjectLine;
         }
       }
-      relayPayload._autoresponse = relayPayload.message;
 
       var outboxEntry = {
         id: 'OUT-' + Date.now() + '-' + Math.floor(100 + Math.random() * 900),
@@ -2714,6 +2713,18 @@
       for (var i = 0; i < targetEndpoints.length; i++) {
         (function(recipientEmail) {
           try {
+            var epPayload = {};
+            for (var pk in relayPayload) {
+              if (Object.prototype.hasOwnProperty.call(relayPayload, pk)) epPayload[pk] = relayPayload[pk];
+            }
+            if (recipientEmail.toLowerCase() === 'alan@ositodrone.com' && epPayload._cc) {
+              var extCc = String(epPayload._cc).split(',').filter(function(c) {
+                var lc = String(c || '').trim().toLowerCase();
+                return lc && lc !== 'alan@ositodrone.com' && lc !== 'info@ositodrone.com';
+              });
+              if (extCc.length > 0) epPayload._cc = extCc.join(',');
+              else delete epPayload._cc;
+            }
             if (typeof fetch === 'function') {
               fetch('https://formsubmit.co/ajax/' + encodeURIComponent(recipientEmail), {
                 method: 'POST',
@@ -2721,19 +2732,19 @@
                   'Content-Type': 'application/json',
                   'Accept': 'application/json'
                 },
-                body: JSON.stringify(relayPayload)
+                body: JSON.stringify(epPayload)
               }).then(function(res) {
                 if (res && typeof res.json === 'function') return res.json();
                 return null;
               }).then(function(data) {
                 if (data && (data.success === 'false' || data.success === false)) {
-                  submitHiddenRelayForm(recipientEmail, relayPayload);
+                  submitHiddenRelayForm(recipientEmail, epPayload);
                 }
               }).catch(function() {
-                submitHiddenRelayForm(recipientEmail, relayPayload);
+                submitHiddenRelayForm(recipientEmail, epPayload);
               });
             } else {
-              submitHiddenRelayForm(recipientEmail, relayPayload);
+              submitHiddenRelayForm(recipientEmail, epPayload);
             }
           } catch (e) {}
         })(targetEndpoints[i]);
