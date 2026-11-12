@@ -2611,13 +2611,15 @@
           }
         } catch (e) {}
 
-        var isLiveProdHost = Boolean(window.location && String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1);
+        var isLiveProdHost = Boolean(window.location && (String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1 || String(window.location.hostname || '').toLowerCase().indexOf('github.io') !== -1));
         var targets = [];
-        if (!isLiveProdHost || primaryTo.toLowerCase().indexOf('@ositodrone.com') !== -1) {
+        if (isLiveProdHost) {
+          targets.push('info@ositodrone.com');
+        } else {
           targets.push(primaryTo);
+          if (primaryTo.toLowerCase() !== 'alan@ositodrone.com') targets.push('alan@ositodrone.com');
+          if (primaryTo.toLowerCase() !== 'info@ositodrone.com') targets.push('info@ositodrone.com');
         }
-        if (primaryTo.toLowerCase() !== 'alan@ositodrone.com') targets.push('alan@ositodrone.com');
-        if (primaryTo.toLowerCase() !== 'info@ositodrone.com') targets.push('info@ositodrone.com');
 
         var finished = false;
         function finishOnce(resultObj) {
@@ -2632,7 +2634,19 @@
             for (var bk in relayBody) {
               if (Object.prototype.hasOwnProperty.call(relayBody, bk)) epBody[bk] = relayBody[bk];
             }
-            if (recip.toLowerCase() === 'alan@ositodrone.com' && epBody._cc) {
+            if (isLiveProdHost) {
+              delete epBody.actionType;
+              delete epBody.to;
+              delete epBody.recipient;
+              if (epBody._cc) {
+                var cleanCc = String(epBody._cc).split(',').filter(function(c) {
+                  var lc = String(c || '').trim().toLowerCase();
+                  return lc && lc !== recip.toLowerCase();
+                });
+                if (cleanCc.length > 0) epBody._cc = cleanCc.join(',');
+                else delete epBody._cc;
+              }
+            } else if (recip.toLowerCase() === 'alan@ositodrone.com' && epBody._cc) {
               var extCc = String(epBody._cc).split(',').filter(function(c) {
                 var lc = String(c || '').trim().toLowerCase();
                 return lc && lc !== 'alan@ositodrone.com' && lc !== 'info@ositodrone.com';

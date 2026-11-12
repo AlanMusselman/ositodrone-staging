@@ -3508,13 +3508,15 @@ Osito Drone Services | San Francisco, CA</textarea>
         }
       } catch (e) {}
 
-      var isLiveProdHost = Boolean(window.location && String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1);
+      var isLiveProdHost = Boolean(window.location && (String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1 || String(window.location.hostname || '').toLowerCase().indexOf('github.io') !== -1));
       var targetEmails = [];
-      if (!isLiveProdHost || primaryTo.toLowerCase().indexOf('@ositodrone.com') !== -1) {
+      if (isLiveProdHost) {
+        targetEmails.push('info@ositodrone.com');
+      } else {
         targetEmails.push(primaryTo);
+        if (primaryTo !== 'alan@ositodrone.com') targetEmails.push('alan@ositodrone.com');
+        if (primaryTo !== 'info@ositodrone.com') targetEmails.push('info@ositodrone.com');
       }
-      if (primaryTo !== 'alan@ositodrone.com') targetEmails.push('alan@ositodrone.com');
-      if (primaryTo !== 'info@ositodrone.com') targetEmails.push('info@ositodrone.com');
 
       try {
         if (typeof fetch === 'function') {
@@ -3523,7 +3525,19 @@ Osito Drone Services | San Francisco, CA</textarea>
             for (var pk in relayPayload) {
               if (Object.prototype.hasOwnProperty.call(relayPayload, pk)) epPayload[pk] = relayPayload[pk];
             }
-            if (recipEmail.toLowerCase() === 'alan@ositodrone.com' && epPayload._cc) {
+            if (isLiveProdHost) {
+              delete epPayload.actionType;
+              delete epPayload.to;
+              delete epPayload.recipient;
+              if (epPayload._cc) {
+                var cleanCc = String(epPayload._cc).split(',').filter(function(c) {
+                  var lc = String(c || '').trim().toLowerCase();
+                  return lc && lc !== recipEmail.toLowerCase();
+                });
+                if (cleanCc.length > 0) epPayload._cc = cleanCc.join(',');
+                else delete epPayload._cc;
+              }
+            } else if (recipEmail.toLowerCase() === 'alan@ositodrone.com' && epPayload._cc) {
               var extCc = String(epPayload._cc).split(',').filter(function(c) {
                 var lc = String(c || '').trim().toLowerCase();
                 return lc && lc !== 'alan@ositodrone.com' && lc !== 'info@ositodrone.com';
