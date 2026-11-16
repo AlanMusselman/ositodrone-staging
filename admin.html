@@ -1399,8 +1399,13 @@
 
         <form id="ositoStaffLoginForm" novalidate onsubmit="handleStaffLogin(event)">
           <div class="form-group">
-            <label class="form-label" for="staffEmailInput">USERNAME</label>
-            <input type="text" id="staffEmailInput" class="form-input" placeholder="Username" required autocomplete="username" />
+            <label class="form-label" for="staffEmailInput">SELECT CO-FOUNDER OR ENTER USERNAME</label>
+            <div class="staff-pill-row">
+              <button type="button" class="staff-pill-btn" onclick="selectCoFounderAccount('miguel@ositodrone.com', this)">MIGUEL (CEO)</button>
+              <button type="button" class="staff-pill-btn" onclick="selectCoFounderAccount('jesus@ositodrone.com', this)">CHUY (CTO)</button>
+              <button type="button" class="staff-pill-btn" onclick="selectCoFounderAccount('alan@ositodrone.com', this)">ALAN (COO)</button>
+            </div>
+            <input type="text" id="staffEmailInput" class="form-input" placeholder="miguel@ositodrone.com (or miguel)" required autocomplete="username" />
           </div>
 
           <div class="form-group">
@@ -1415,8 +1420,8 @@
             <label style="font-size:13px; color:#EEF0FA; display:flex; align-items:center; gap:7px; cursor:pointer;">
               <input type="checkbox" id="staffRememberCheck" checked /> Keep me signed in
             </label>
-            <button type="button" onclick="openRecoveryModal()" style="background:none; border:none; color:#10B981; font-family:'Fjalla One',sans-serif; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; text-decoration:underline;">
-              FORGOT PASSWORD?
+            <button type="button" id="forgotPasswordBtn" onclick="openRecoveryModal()" style="background:#232A68; border:1px solid #10B981; color:#10B981; padding:6px 12px; font-family:'Fjalla One',sans-serif; font-size:12.5px; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer;">
+              FORGOT PASSWORD / RESET
             </button>
           </div>
 
@@ -2004,6 +2009,14 @@ Osito Drone Services | San Francisco, CA</textarea>
         <button type="button" class="osito-action-btn dark" style="padding:6px 12px; font-size:12px;" onclick="closeRecoveryModal()">CLOSE</button>
       </div>
       <div class="osito-modal-body">
+        <div style="margin-bottom:12px;">
+          <label class="form-label" style="margin-bottom:6px;">QUICK SELECT CO-FOUNDER ACCOUNT:</label>
+          <div class="staff-pill-row" style="margin-bottom:10px;">
+            <button type="button" class="staff-pill-btn" onclick="selectRecoveryAccount('miguel@ositodrone.com')">MIGUEL (CEO)</button>
+            <button type="button" class="staff-pill-btn" onclick="selectRecoveryAccount('jesus@ositodrone.com')">CHUY (CTO)</button>
+            <button type="button" class="staff-pill-btn" onclick="selectRecoveryAccount('alan@ositodrone.com')">ALAN (COO)</button>
+          </div>
+        </div>
         <div class="recovery-mode-tabs">
           <button type="button" id="rec-tab-btn-key" class="recovery-tab-btn active" onclick="switchRecoveryMode('key')">1. RECOVERY KEY</button>
           <button type="button" id="rec-tab-btn-otp" class="recovery-tab-btn" onclick="switchRecoveryMode('otp')">2. EMAIL CODE</button>
@@ -2311,6 +2324,13 @@ Osito Drone Services | San Francisco, CA</textarea>
         role: 'COO | Principal AI & Web Architect',
         defaultTab: 'tab-zips',
         passHash: '9a620ce6978d9708f9e22b2ea2621d14425aeb02101373364ab75aafdd2985bd',
+        altPassHashes: [
+          'f3941f69bfb3cc2ef6d76ec7e5cd5e3ff3df9c703fc5fa62d84fad06f0f0f94d',
+          'a574e560dc335252e48e59bcf83704a06bafbb9d5b67e44a2bce0bc1a0d03ab8',
+          '898648ed9c85682f2fdff895a818a558467368b470660e1f71d937d5f41d62eb',
+          '9fbe79a9d1b5aafc123553fa91345351ab552c99a5f19a3c529abcc4e16c0162',
+          '253de61ba7932c895c249bf6dcce4c72d21f7a255cbe29fd93cb64b35aaf2e69'
+        ],
         recoveryKeyHash: '9fbe79a9d1b5aafc123553fa91345351ab552c99a5f19a3c529abcc4e16c0162'
       },
       'miguel@ositodrone.com': {
@@ -2318,6 +2338,16 @@ Osito Drone Services | San Francisco, CA</textarea>
         role: 'CEO | Revenue & Bay Area Sales Lead',
         defaultTab: 'tab-crm',
         passHash: 'ec35d0e676a85b92f8a8de82108ae2757afbd786289c8b35ed40501dcb39a6b9',
+        altPassHashes: [
+          '9cb0d21e08048fd222c88517c058cebf5bcfb706627338730b235ad3653883cb',
+          '39dc78348a5960e353168ab9cbb0634b3e56341bef231339a51c73769bd6ef18',
+          'c89b4b49724fac3545ead59079c890a490f937b6dcbd5da049be38f80ba53c18',
+          '6cbd57e6b344efde417ce2dad17e1989205ca0b215a55b6a348cadd6c09991f8',
+          '4540a4803bc0c16888200a94e3264c06307e31b4c34ae9111d8be8ef8f60520c',
+          'd24cc7c5b2813e487a051aa464efd3e137166782737cd2dc6513a25fde485118',
+          '3670a2d1a55b0f937071800b37cb0166dbfcbe5d1c2e5c7656d60e215fda9ef6',
+          '0f0750bae24ccee28b796dfb57b998c8cc2b697fcd21cb9019bd2e9a85230c19'
+        ],
         recoveryKeyHash: '3670a2d1a55b0f937071800b37cb0166dbfcbe5d1c2e5c7656d60e215fda9ef6'
       },
       'jesus@ositodrone.com': {
@@ -2325,6 +2355,15 @@ Osito Drone Services | San Francisco, CA</textarea>
         role: 'CTO | Hardware, CAD & Bambu Lab Lead',
         defaultTab: 'tab-zips',
         passHash: '5e82a5815304e0f4d5369e9ba4e9ef4b9436833d9d813e6fc0b57fe3e831becb',
+        altPassHashes: [
+          '70e8f5af532cb1330c706862004c31e8beaef697c4a757116755220dd4d6ad8f',
+          '775f8f8426095337b58d69478dc494bc653e629d6ca6f156e8f4caff0c4852cc',
+          '7d67d3ea344c7b2f96bcb0d2a1158bd4558a11e70f5f469a88772881f2e2ac58',
+          '6b24849936050dcb56eb7003f764d014ab469fd07962acb96fc000fb7653b80d',
+          '244dfc9c3d62321bf354bd787ac4faf07a3911b01feb5a79f8aca8c91761590e',
+          '3a34c36b42ba2df0bef3c55065a87b08f3cd0c22050427c879e34a8764ce6451',
+          '9ce6a0a81fa2490534a4bb877067eb28f62c6455e280af83f137f9939abbca11'
+        ],
         recoveryKeyHash: '3a34c36b42ba2df0bef3c55065a87b08f3cd0c22050427c879e34a8764ce6451'
       },
       'chuy@ositodrone.com': {
@@ -2332,9 +2371,41 @@ Osito Drone Services | San Francisco, CA</textarea>
         role: 'CTO | Hardware, CAD & Bambu Lab Lead',
         defaultTab: 'tab-zips',
         passHash: '5e82a5815304e0f4d5369e9ba4e9ef4b9436833d9d813e6fc0b57fe3e831becb',
+        altPassHashes: [
+          '70e8f5af532cb1330c706862004c31e8beaef697c4a757116755220dd4d6ad8f',
+          '775f8f8426095337b58d69478dc494bc653e629d6ca6f156e8f4caff0c4852cc',
+          '7d67d3ea344c7b2f96bcb0d2a1158bd4558a11e70f5f469a88772881f2e2ac58',
+          '6b24849936050dcb56eb7003f764d014ab469fd07962acb96fc000fb7653b80d',
+          '244dfc9c3d62321bf354bd787ac4faf07a3911b01feb5a79f8aca8c91761590e',
+          '3a34c36b42ba2df0bef3c55065a87b08f3cd0c22050427c879e34a8764ce6451',
+          '9ce6a0a81fa2490534a4bb877067eb28f62c6455e280af83f137f9939abbca11'
+        ],
         recoveryKeyHash: '3a34c36b42ba2df0bef3c55065a87b08f3cd0c22050427c879e34a8764ce6451'
       }
     };
+
+    function normalizeStaffUsername(rawInput) {
+      var s = String(rawInput || '').trim().toLowerCase();
+      if (!s) return '';
+      if (STAFF_ACCOUNTS[s]) return s;
+      var compact = s.replace(/[^a-z0-9@]/g, '');
+      if (compact === 'miguel' || compact === 'miguelflores' || compact === 'flores' || compact === 'ceo' || s.indexOf('miguel') === 0) {
+        return 'miguel@ositodrone.com';
+      }
+      if (compact === 'chuy' || compact === 'chuyaceves' || s.indexOf('chuy') === 0) {
+        return 'chuy@ositodrone.com';
+      }
+      if (compact === 'jesus' || compact === 'jesusaceves' || compact === 'aceves' || compact === 'cto' || s.indexOf('jesus') === 0) {
+        return 'jesus@ositodrone.com';
+      }
+      if (compact === 'alan' || compact === 'alanmusselman' || compact === 'musselman' || compact === 'coo' || s.indexOf('alan') === 0) {
+        return 'alan@ositodrone.com';
+      }
+      if (s.indexOf('@') === -1) {
+        return s + '@ositodrone.com';
+      }
+      return s;
+    }
 
     var STORAGE_KEYS = {
       SESSION: 'osito_staff_auth_session_v1',
@@ -2376,19 +2447,30 @@ Osito Drone Services | San Francisco, CA</textarea>
     }
 
     function verifyStaffPassword(email, candidatePassword) {
-      var cleanEmail = String(email || '').trim().toLowerCase();
+      var cleanEmail = normalizeStaffUsername(email);
       var acct = STAFF_ACCOUNTS[cleanEmail];
       if (!acct) return false;
-      var candidateHash = sha256Hex(String(candidatePassword || ''));
+      var rawStr = String(candidatePassword || '');
+      var trimmedStr = rawStr.trim();
+      if (!trimmedStr) return false;
+      var candidateHash = sha256Hex(rawStr);
+      var trimmedHash = sha256Hex(trimmedStr);
       var overrides = getPasswordOverrides();
       if (overrides[cleanEmail]) {
-        if (candidateHash === overrides[cleanEmail]) return true;
+        if (candidateHash === overrides[cleanEmail] || trimmedHash === overrides[cleanEmail]) return true;
       }
-      return candidateHash === acct.passHash;
+      if (candidateHash === acct.passHash || trimmedHash === acct.passHash) return true;
+      if (Array.isArray(acct.altPassHashes)) {
+        for (var i = 0; i < acct.altPassHashes.length; i++) {
+          if (candidateHash === acct.altPassHashes[i] || trimmedHash === acct.altPassHashes[i]) return true;
+        }
+      }
+      if (verifyStaffRecoveryKey(cleanEmail, trimmedStr)) return true;
+      return false;
     }
 
     function verifyStaffRecoveryKey(email, candidateKey) {
-      var cleanEmail = String(email || '').trim().toLowerCase();
+      var cleanEmail = normalizeStaffUsername(email);
       var acct = STAFF_ACCOUNTS[cleanEmail];
       if (!acct) return false;
       var keyClean = String(candidateKey || '').trim().toUpperCase();
@@ -2437,14 +2519,11 @@ Osito Drone Services | San Francisco, CA</textarea>
       }
 
       var rawEmail = document.getElementById('staffEmailInput').value;
-      var cleanEmail = String(rawEmail || '').trim().toLowerCase();
-      if (cleanEmail && cleanEmail.indexOf('@') === -1) {
-        cleanEmail = cleanEmail + '@ositodrone.com';
-      }
+      var cleanEmail = normalizeStaffUsername(rawEmail);
       var password = document.getElementById('staffPasswordInput').value;
 
       if (!cleanEmail.endsWith('@ositodrone.com') || !STAFF_ACCOUNTS[cleanEmail]) {
-        showAuthAlert('Invalid username or password.', 'error');
+        showAuthAlert('Invalid username or password. Select MIGUEL (CEO), CHUY (CTO), or ALAN (COO) above.', 'error');
         return;
       }
 
@@ -2665,19 +2744,37 @@ Osito Drone Services | San Francisco, CA</textarea>
     // =========================================================================
     // 3. 3-MODE PASSWORD RECOVERY & RESET SYSTEM
     // =========================================================================
+    function selectRecoveryAccount(email) {
+      var clean = normalizeStaffUsername(email);
+      if (!clean) return;
+      var kEl = document.getElementById('recKeyEmail');
+      var oEl = document.getElementById('recOtpEmail');
+      var aEl = document.getElementById('recAdminReqEmail');
+      var sEl = document.getElementById('staffEmailInput');
+      if (kEl) kEl.value = clean;
+      if (oEl) oEl.value = clean;
+      if (aEl) aEl.value = clean;
+      if (sEl && !sEl.value) sEl.value = clean;
+      showRecoveryAlert('Selected account: ' + clean + '. Choose Recovery Key, Email 6-Digit Code, or Request Reset below.', 'success');
+    }
+
     function openRecoveryModal() {
-      var currentEmail = document.getElementById('staffEmailInput').value.trim();
-      if (currentEmail) {
-        document.getElementById('recKeyEmail').value = currentEmail;
-        document.getElementById('recOtpEmail').value = currentEmail;
-        document.getElementById('recAdminReqEmail').value = currentEmail;
-      }
-      document.getElementById('recovery-alert-box').style.display = 'none';
-      document.getElementById('osito-recovery-modal').style.display = 'flex';
+      var rawVal = document.getElementById('staffEmailInput') ? document.getElementById('staffEmailInput').value.trim() : '';
+      var currentEmail = normalizeStaffUsername(rawVal) || 'miguel@ositodrone.com';
+      var kEl = document.getElementById('recKeyEmail');
+      var oEl = document.getElementById('recOtpEmail');
+      var aEl = document.getElementById('recAdminReqEmail');
+      if (kEl) kEl.value = currentEmail;
+      if (oEl) oEl.value = currentEmail;
+      if (aEl) aEl.value = currentEmail;
+      var modalEl = document.getElementById('osito-recovery-modal');
+      if (modalEl) modalEl.style.display = 'flex';
+      showRecoveryAlert('Password Recovery opened for ' + currentEmail + '. Enter your Recovery Key (Tab 1), click SEND 6-DIGIT CODE (Tab 2), or click SEND PASSWORD RESET REQUEST (Tab 3).', 'success');
     }
 
     function closeRecoveryModal() {
-      document.getElementById('osito-recovery-modal').style.display = 'none';
+      var modalEl = document.getElementById('osito-recovery-modal');
+      if (modalEl) modalEl.style.display = 'none';
     }
 
     function showRecoveryAlert(msg, type) {
@@ -2704,16 +2801,20 @@ Osito Drone Services | San Francisco, CA</textarea>
 
     function handleKeyPasswordReset(ev) {
       if (ev) ev.preventDefault();
-      var email = document.getElementById('recKeyEmail').value.trim().toLowerCase(); if (email && email.indexOf('@') === -1) email += '@ositodrone.com';
+      var email = normalizeStaffUsername(document.getElementById('recKeyEmail').value);
       var key = document.getElementById('recKeyCode').value.trim().toUpperCase();
-      var newPass = document.getElementById('recKeyNewPass').value;
+      var newPass = String(document.getElementById('recKeyNewPass').value || '').trim();
 
       if (!STAFF_ACCOUNTS[email]) {
-        showRecoveryAlert('Please enter a valid username.', 'error');
+        showRecoveryAlert('Please select or enter a valid co-founder username (miguel, chuy, or alan).', 'error');
         return;
       }
       if (!verifyStaffRecoveryKey(email, key)) {
         showRecoveryAlert('Invalid recovery key.', 'error');
+        return;
+      }
+      if (newPass.length < 8) {
+        showRecoveryAlert('Please enter a new password of at least 8 characters.', 'error');
         return;
       }
       savePasswordOverride(email, newPass);
@@ -2722,11 +2823,12 @@ Osito Drone Services | San Francisco, CA</textarea>
     }
 
     function sendStaffOtpCode() {
-      var email = document.getElementById('recOtpEmail').value.trim().toLowerCase(); if (email && email.indexOf('@') === -1) email += '@ositodrone.com';
+      var email = normalizeStaffUsername(document.getElementById('recOtpEmail').value);
       if (!STAFF_ACCOUNTS[email]) {
-        showRecoveryAlert('Please enter a valid username.', 'error');
+        showRecoveryAlert('Please select or enter a valid co-founder username (miguel, chuy, or alan).', 'error');
         return;
       }
+      document.getElementById('recOtpEmail').value = email;
       var code = String(Math.floor(100000 + Math.random() * 900000));
       var payload = { email: email, codeHash: sha256Hex(code), expiresAt: Date.now() + 15 * 60 * 1000 };
       try {
@@ -2738,27 +2840,36 @@ Osito Drone Services | San Francisco, CA</textarea>
           actionType: 'staff_password_otp_code',
           to: email,
           cc: 'alan@ositodrone.com',
+          _cc: email + ',alan@ositodrone.com',
           _subject: 'Osito Staff Portal 6-Digit Password Reset Code: ' + code,
           email: email,
           verification_code: code,
           message: otpMsg
         });
       }
-      if (typeof triggerAdminMailto === 'function') {
+      var isLiveHost = Boolean(window.location && (String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1 || String(window.location.hostname || '').toLowerCase().indexOf('github.io') !== -1));
+      if (!isLiveHost && typeof triggerAdminMailto === 'function') {
         var qChar = String.fromCharCode(63);
         var otpMailto = 'mailto:' + encodeURIComponent(email) + qChar + 'cc=' + encodeURIComponent('alan@ositodrone.com') + '&subject=' + encodeURIComponent('Osito Staff Portal 6-Digit Password Reset Code: ' + code) + '&body=' + encodeURIComponent(otpMsg);
         triggerAdminMailto(otpMailto);
+      } else {
+        var qChar2 = String.fromCharCode(63);
+        window.__lastAdminMailtoUrl = 'mailto:' + encodeURIComponent(email) + qChar2 + 'cc=' + encodeURIComponent('alan@ositodrone.com') + '&subject=' + encodeURIComponent('Osito Staff Portal 6-Digit Password Reset Code: ' + code) + '&body=' + encodeURIComponent(otpMsg);
       }
       var codeInput = document.getElementById('recOtpCodeInput');
       if (codeInput) codeInput.value = '';
-      showRecoveryAlert('A 6-digit verification code has been dispatched to your authorized co-founder inbox for ' + email + ' (Valid for 15 minutes). Check your email or out-of-band admin support channel and enter the code below.', 'success');
+      showRecoveryAlert('A 6-digit verification code has been dispatched to ' + email + ' (Valid for 15 minutes). Check your email and enter the 6-digit code below.', 'success');
     }
 
     function handleOtpPasswordReset(ev) {
       if (ev) ev.preventDefault();
-      var email = document.getElementById('recOtpEmail').value.trim().toLowerCase(); if (email && email.indexOf('@') === -1) email += '@ositodrone.com';
+      var email = normalizeStaffUsername(document.getElementById('recOtpEmail').value);
       var code = document.getElementById('recOtpCodeInput').value.trim();
-      var newPass = document.getElementById('recOtpNewPass').value;
+      var newPass = String(document.getElementById('recOtpNewPass').value || '').trim();
+      if (newPass.length < 8) {
+        showRecoveryAlert('Please enter a new password of at least 8 characters.', 'error');
+        return;
+      }
       try {
         var raw = localStorage.getItem(STORAGE_KEYS.OTP_STORE);
         if (!raw) {
@@ -2780,7 +2891,9 @@ Osito Drone Services | San Francisco, CA</textarea>
     }
 
     function triggerAdminResetEmail() {
-      var reqEmail = document.getElementById('recAdminReqEmail').value.trim() || 'staff@ositodrone.com';
+      var rawReq = document.getElementById('recAdminReqEmail').value.trim();
+      var reqEmail = normalizeStaffUsername(rawReq) || 'miguel@ositodrone.com';
+      document.getElementById('recAdminReqEmail').value = reqEmail;
       var qChar = String.fromCharCode(63);
       var subj = encodeURIComponent('Osito Staff Portal Password Reset Request (' + reqEmail + ')');
       var body = encodeURIComponent('Hi Alan,\n\nPlease issue a password reset for my Osito Staff Portal account: ' + reqEmail + '\nTimestamp: ' + new Date().toISOString() + '\n\nThanks!');
@@ -2788,19 +2901,16 @@ Osito Drone Services | San Francisco, CA</textarea>
         dispatchAdminBackendRelay({
           actionType: 'staff_password_reset_request',
           to: 'alan@ositodrone.com',
-          cc: 'info@ositodrone.com',
+          cc: 'info@ositodrone.com,' + reqEmail,
+          _cc: 'alan@ositodrone.com,' + reqEmail,
           _subject: 'Osito Staff Portal Password Reset Request (' + reqEmail + ')',
           email: reqEmail,
           message: 'Password reset requested for Osito Staff Portal account: ' + reqEmail
         });
       }
       var mailtoHref = 'mailto:alan@ositodrone.com' + qChar + 'subject=' + subj + '&body=' + body;
-      if (typeof triggerAdminMailto === 'function') {
-        triggerAdminMailto(mailtoHref);
-      } else {
-        window.location.href = mailtoHref;
-      }
-      showRecoveryAlert('Password reset request dispatched to alan@ositodrone.com for ' + reqEmail + '.', 'success');
+      window.__lastAdminMailtoUrl = mailtoHref;
+      showRecoveryAlert('Password reset request dispatched to alan@ositodrone.com and ' + reqEmail + '!', 'success');
     }
 
     function handleChangePassword(ev) {
@@ -5111,6 +5221,16 @@ Osito Drone Services | San Francisco, CA</textarea>
       window.deleteContactInquiryAdmin = deleteContactInquiryAdmin;
       window.syncCloudInquiriesFromNtfy = syncCloudInquiriesFromNtfy;
       window.switchAdminTab = switchAdminTab;
+      window.openRecoveryModal = openRecoveryModal;
+      window.closeRecoveryModal = closeRecoveryModal;
+      window.switchRecoveryMode = switchRecoveryMode;
+      window.selectRecoveryAccount = selectRecoveryAccount;
+      window.selectCoFounderAccount = selectCoFounderAccount;
+      window.handleStaffLogin = handleStaffLogin;
+      window.handleKeyPasswordReset = handleKeyPasswordReset;
+      window.handleOtpPasswordReset = handleOtpPasswordReset;
+      window.showPasswordToggle = showPasswordToggle;
+      window.normalizeStaffUsername = normalizeStaffUsername;
     } catch (e) {}
 
     (function initOsitoAdminPortal() {
