@@ -1399,13 +1399,8 @@
 
         <form id="ositoStaffLoginForm" method="post" action="./admin.html#dashboard" novalidate onsubmit="handleStaffLogin(event)">
           <div class="form-group">
-            <label class="form-label" for="staffEmailInput">SELECT CO-FOUNDER OR ENTER USERNAME</label>
-            <div class="staff-pill-row">
-              <button type="button" class="staff-pill-btn" onclick="selectCoFounderAccount('miguel@ositodrone.com', this)">MIGUEL (CEO)</button>
-              <button type="button" class="staff-pill-btn" onclick="selectCoFounderAccount('jesus@ositodrone.com', this)">CHUY (CTO)</button>
-              <button type="button" class="staff-pill-btn" onclick="selectCoFounderAccount('alan@ositodrone.com', this)">ALAN (COO)</button>
-            </div>
-            <input type="text" id="staffEmailInput" name="username" class="form-input" placeholder="miguel@ositodrone.com (or miguel)" required autocomplete="username" />
+            <label class="form-label" for="staffEmailInput">USERNAME</label>
+            <input type="text" id="staffEmailInput" name="username" class="form-input" placeholder="Username" required autocomplete="username" />
           </div>
 
           <div class="form-group">
@@ -2009,14 +2004,6 @@ Osito Drone Services | San Francisco, CA</textarea>
         <button type="button" class="osito-action-btn dark" style="padding:6px 12px; font-size:12px;" onclick="closeRecoveryModal()">CLOSE</button>
       </div>
       <div class="osito-modal-body">
-        <div style="margin-bottom:12px;">
-          <label class="form-label" style="margin-bottom:6px;">QUICK SELECT CO-FOUNDER ACCOUNT:</label>
-          <div class="staff-pill-row" style="margin-bottom:10px;">
-            <button type="button" class="staff-pill-btn" onclick="selectRecoveryAccount('miguel@ositodrone.com')">MIGUEL (CEO)</button>
-            <button type="button" class="staff-pill-btn" onclick="selectRecoveryAccount('jesus@ositodrone.com')">CHUY (CTO)</button>
-            <button type="button" class="staff-pill-btn" onclick="selectRecoveryAccount('alan@ositodrone.com')">ALAN (COO)</button>
-          </div>
-        </div>
         <div class="recovery-mode-tabs">
           <button type="button" id="rec-tab-btn-key" class="recovery-tab-btn active" onclick="switchRecoveryMode('key')">1. RECOVERY KEY</button>
           <button type="button" id="rec-tab-btn-otp" class="recovery-tab-btn" onclick="switchRecoveryMode('otp')">2. EMAIL CODE</button>
@@ -2523,7 +2510,7 @@ Osito Drone Services | San Francisco, CA</textarea>
       var password = document.getElementById('staffPasswordInput').value;
 
       if (!cleanEmail.endsWith('@ositodrone.com') || !STAFF_ACCOUNTS[cleanEmail]) {
-        showAuthAlert('Invalid username or password. Select MIGUEL (CEO), CHUY (CTO), or ALAN (COO) above.', 'error');
+        showAuthAlert('Invalid username or password.', 'error');
         return;
       }
 
@@ -2780,16 +2767,18 @@ Osito Drone Services | San Francisco, CA</textarea>
 
     function openRecoveryModal() {
       var rawVal = document.getElementById('staffEmailInput') ? document.getElementById('staffEmailInput').value.trim() : '';
-      var currentEmail = normalizeStaffUsername(rawVal) || 'miguel@ositodrone.com';
+      var currentEmail = rawVal ? normalizeStaffUsername(rawVal) : '';
       var kEl = document.getElementById('recKeyEmail');
       var oEl = document.getElementById('recOtpEmail');
       var aEl = document.getElementById('recAdminReqEmail');
-      if (kEl) kEl.value = currentEmail;
-      if (oEl) oEl.value = currentEmail;
-      if (aEl) aEl.value = currentEmail;
+      if (currentEmail) {
+        if (kEl) kEl.value = currentEmail;
+        if (oEl) oEl.value = currentEmail;
+        if (aEl) aEl.value = currentEmail;
+      }
       var modalEl = document.getElementById('osito-recovery-modal');
       if (modalEl) modalEl.style.display = 'flex';
-      showRecoveryAlert('Password Recovery opened for ' + currentEmail + '. Enter your Recovery Key (Tab 1), click SEND 6-DIGIT CODE (Tab 2), or click SEND PASSWORD RESET REQUEST (Tab 3).', 'success');
+      showRecoveryAlert('Enter your username below and choose Tab 1 (Recovery Key), Tab 2 (Email 6-Digit Code), or Tab 3 (Request Reset).', 'success');
     }
 
     function closeRecoveryModal() {
@@ -2826,7 +2815,7 @@ Osito Drone Services | San Francisco, CA</textarea>
       var newPass = String(document.getElementById('recKeyNewPass').value || '').trim();
 
       if (!STAFF_ACCOUNTS[email]) {
-        showRecoveryAlert('Please select or enter a valid co-founder username (miguel, chuy, or alan).', 'error');
+        showRecoveryAlert('Please enter a valid username.', 'error');
         return;
       }
       if (!verifyStaffRecoveryKey(email, key)) {
@@ -2845,7 +2834,7 @@ Osito Drone Services | San Francisco, CA</textarea>
     function sendStaffOtpCode() {
       var email = normalizeStaffUsername(document.getElementById('recOtpEmail').value);
       if (!STAFF_ACCOUNTS[email]) {
-        showRecoveryAlert('Please select or enter a valid co-founder username (miguel, chuy, or alan).', 'error');
+        showRecoveryAlert('Please enter a valid username.', 'error');
         return;
       }
       document.getElementById('recOtpEmail').value = email;
