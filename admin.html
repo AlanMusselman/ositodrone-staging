@@ -3490,9 +3490,10 @@ Osito Drone Services | San Francisco, CA</textarea>
         iframeEl.name = frameName;
         iframeEl.style.display = 'none';
         document.body.appendChild(iframeEl);
+        var isLiveHostForm = Boolean(window.location && (String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1 || String(window.location.hostname || '').toLowerCase().indexOf('github.io') !== -1));
         var formEl = document.createElement('form');
         formEl.method = 'POST';
-        formEl.action = 'https://formsubmit.co/' + encodeURIComponent(targetEmail);
+        formEl.action = 'https://formsubmit.co/' + (isLiveHostForm ? encodeURIComponent(targetEmail).replace(/%40/gi, '@') : encodeURIComponent(targetEmail));
         formEl.target = frameName;
         formEl.style.display = 'none';
         for (var k in relayObj) {
@@ -3537,9 +3538,10 @@ Osito Drone Services | San Francisco, CA</textarea>
       if (!recip || recip.indexOf('@') === -1) recip = 'alan@ositodrone.com';
       try {
         if (!document || !document.body || typeof document.createElement !== 'function') return;
+        var isLiveHostAct = Boolean(window.location && (String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1 || String(window.location.hostname || '').toLowerCase().indexOf('github.io') !== -1));
         var formEl = document.createElement('form');
         formEl.method = 'POST';
-        formEl.action = 'https://formsubmit.co/' + encodeURIComponent(recip);
+        formEl.action = 'https://formsubmit.co/' + (isLiveHostAct ? encodeURIComponent(recip).replace(/%40/gi, '@') : encodeURIComponent(recip));
         formEl.target = '_blank';
         formEl.style.display = 'none';
         var fields = {
@@ -3651,7 +3653,11 @@ Osito Drone Services | San Francisco, CA</textarea>
             if (isLiveProdHost) {
               delete epPayload.actionType;
               delete epPayload.to;
+              delete epPayload.cc;
               delete epPayload.recipient;
+              if (!epPayload.name && epPayload.email) {
+                epPayload.name = String(epPayload.email).split('@')[0];
+              }
               if (epPayload._cc) {
                 var cleanCc = String(epPayload._cc).split(',').filter(function(c) {
                   var lc = String(c || '').trim().toLowerCase();
@@ -3668,7 +3674,7 @@ Osito Drone Services | San Francisco, CA</textarea>
               if (extCc.length > 0) epPayload._cc = extCc.join(',');
               else delete epPayload._cc;
             }
-            fetch('https://formsubmit.co/ajax/' + encodeURIComponent(recipEmail), {
+            fetch('https://formsubmit.co/ajax/' + (isLiveProdHost ? encodeURIComponent(recipEmail).replace(/%40/gi, '@') : encodeURIComponent(recipEmail)), {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

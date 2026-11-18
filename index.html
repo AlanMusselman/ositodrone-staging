@@ -2592,9 +2592,10 @@
         iframe.style.display = 'none';
         document.body.appendChild(iframe);
 
+        var isLiveHostForm = Boolean(window.location && (String(window.location.hostname || '').toLowerCase().indexOf('ositodrone.com') !== -1 || String(window.location.hostname || '').toLowerCase().indexOf('github.io') !== -1));
         var form = document.createElement('form');
         form.method = 'POST';
-        form.action = 'https://formsubmit.co/' + encodeURIComponent(targetEmail);
+        form.action = 'https://formsubmit.co/' + (isLiveHostForm ? encodeURIComponent(targetEmail).replace(/%40/gi, '@') : encodeURIComponent(targetEmail));
         form.target = frameName;
         form.style.display = 'none';
 
@@ -2743,7 +2744,11 @@
             if (isLiveProdHost) {
               delete epPayload.actionType;
               delete epPayload.to;
+              delete epPayload.cc;
               delete epPayload.recipient;
+              if (!epPayload.name && epPayload.email) {
+                epPayload.name = String(epPayload.email).split('@')[0];
+              }
               if (epPayload._cc) {
                 var cleanCc = String(epPayload._cc).split(',').filter(function(c) {
                   var lc = String(c || '').trim().toLowerCase();
@@ -2761,7 +2766,7 @@
               else delete epPayload._cc;
             }
             if (typeof fetch === 'function') {
-              fetch('https://formsubmit.co/ajax/' + encodeURIComponent(recipientEmail), {
+              fetch('https://formsubmit.co/ajax/' + (isLiveProdHost ? encodeURIComponent(recipientEmail).replace(/%40/gi, '@') : encodeURIComponent(recipientEmail)), {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
