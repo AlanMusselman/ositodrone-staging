@@ -1397,7 +1397,7 @@
       <div class="auth-card-body">
         <div id="auth-alert-box" class="admin-alert" role="alert"></div>
 
-        <form id="ositoStaffLoginForm" novalidate onsubmit="handleStaffLogin(event)">
+        <form id="ositoStaffLoginForm" method="post" action="./admin.html#dashboard" novalidate onsubmit="handleStaffLogin(event)">
           <div class="form-group">
             <label class="form-label" for="staffEmailInput">SELECT CO-FOUNDER OR ENTER USERNAME</label>
             <div class="staff-pill-row">
@@ -1405,15 +1405,15 @@
               <button type="button" class="staff-pill-btn" onclick="selectCoFounderAccount('jesus@ositodrone.com', this)">CHUY (CTO)</button>
               <button type="button" class="staff-pill-btn" onclick="selectCoFounderAccount('alan@ositodrone.com', this)">ALAN (COO)</button>
             </div>
-            <input type="text" id="staffEmailInput" class="form-input" placeholder="miguel@ositodrone.com (or miguel)" required autocomplete="username" />
+            <input type="text" id="staffEmailInput" name="username" class="form-input" placeholder="miguel@ositodrone.com (or miguel)" required autocomplete="username" />
           </div>
 
           <div class="form-group">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
               <label class="form-label" for="staffPasswordInput" style="margin-bottom:0;">PASSWORD</label>
-              <button type="button" onclick="showPasswordToggle('staffPasswordInput', this)" style="background:none; border:none; color:#8E93DA; font-family:'Fjalla One',sans-serif; font-size:11.5px; cursor:pointer; text-transform:uppercase;">SHOW PASSWORD</button>
+              <button type="button" id="toggleStaffPwBtn" onclick="showPasswordToggle('staffPasswordInput', this)" style="background:none; border:none; color:#8E93DA; font-family:'Fjalla One',sans-serif; font-size:11.5px; cursor:pointer; text-transform:uppercase;">SHOW PASSWORD</button>
             </div>
-            <input type="password" id="staffPasswordInput" class="form-input" placeholder="Password" required autocomplete="current-password" />
+            <input type="password" id="staffPasswordInput" name="password" class="form-input" placeholder="Password" required autocomplete="current-password" />
           </div>
 
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:18px;">
@@ -2540,6 +2540,26 @@ Osito Drone Services | San Francisco, CA</textarea>
       }
 
       failedLoginCount = 0;
+      try {
+        var emailInpEl = document.getElementById('staffEmailInput');
+        var pwInpEl = document.getElementById('staffPasswordInput');
+        var toggleBtnEl = document.getElementById('toggleStaffPwBtn');
+        if (emailInpEl) emailInpEl.value = cleanEmail;
+        if (pwInpEl && pwInpEl.type !== 'password') {
+          pwInpEl.type = 'password';
+          if (toggleBtnEl) toggleBtnEl.textContent = 'SHOW PASSWORD';
+        }
+        if (typeof window !== 'undefined' && window.PasswordCredential && navigator.credentials && typeof navigator.credentials.store === 'function') {
+          var formEl = document.getElementById('ositoStaffLoginForm');
+          var cred = formEl
+            ? new window.PasswordCredential(formEl)
+            : new window.PasswordCredential({ id: cleanEmail, password: password, name: STAFF_ACCOUNTS[cleanEmail].name });
+          navigator.credentials.store(cred).catch(function() {});
+        }
+        if (typeof window !== 'undefined' && window.history && typeof window.history.pushState === 'function') {
+          window.history.pushState({ staffAuth: true, email: cleanEmail }, '', (window.location.pathname || '/admin.html') + '#dashboard');
+        }
+      } catch (credErr) {}
       completeStaffSignIn(cleanEmail);
     }
 
