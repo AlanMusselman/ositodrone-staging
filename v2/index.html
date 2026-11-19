@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://formsubmit.co https://ntfy.sh; frame-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; object-src 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+  <title>Osito Drone 2.0 | 4-Station Drone Studio &amp; Birthdays — 2141 Mission St, Suite 201 SF</title>
+  <meta name="description" content="Opening January 5 at 2141 Mission St, Suite 201 in San Francisco. Indoor 4-Station Youth Drone Program (Hover, 3D Sim, Repair &amp; Build, FPV Freestyle) and VIP Drone Birthday Parties." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --peri: #7077CF;
+      --peri-hover: #6068C4;
+      --peri-active: #444FB6;
+      --royal: #232A68;
+      --royal-deep: #161E54;
+      --royal-mid: #303885;
+      --lav: #EEF0FA;
+      --lav-bdr: #8E93DA;
+      --charcoal: #161616;
+      --charcoal-2: #1B1B1B;
+      --white: #FFFFFF;
+      --row-alt: #F6F6F6;
+      --border: #E2E2E2;
+      --muted: #5E5E5E;
+      --emerald: #10B981;
+      --emerald-dk: #059669;
+    }
+
+    * {
+      border-radius: 0px !important;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--charcoal);
+      background-color: var(--royal-deep);
+      background-image:
+        linear-gradient(180deg, rgba(22, 30, 84, 0.86) 0%, rgba(35, 42, 104, 0.90) 100%),
+        url('./assets/sf-mission-twilight.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      line-height: 1.55;
+    }
+
+    [contenteditable="true"]:focus {
+      background: rgba(112, 119, 207, 0.18);
+      outline: 2px dashed var(--peri);
+    }
+
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .font-display {
+      font-family: 'Fjalla One', Impact, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* Announcement Ribbon */
+    .launch-ribbon {
+      background: var(--charcoal);
+      color: var(--white);
+      border-bottom: 2px solid var(--emerald);
+      padding: 8px 24px;
+      font-size: 12.5px;
+      text-align: center;
+    }
+
+    .launch-ribbon strong {
+      color: var(--emerald);
+    }
+
+    .launch-ribbon a {
+      color: var(--white);
+      font-weight: 700;
+      text-decoration: underline;
+      margin-left: 8px;
+    }
+
+    /* Sticky Top Nav */
+    #osito-site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+      background: rgba(22, 22, 22, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 3px solid var(--peri);
+      padding: 10px 24px;
+    }
+
+    .nav-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .nav-brand img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-brand-badge {
+      background: var(--royal);
+      border: 1px solid var(--peri);
+      color: var(--lav);
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      padding: 4px 8px;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      padding: 8px 12px;
+      border: 1px solid transparent;
+      transition: background 0.15s, border-color 0.15s;
+      display: inline-block;
+    }
+
+    .nav-link:hover {
+      background: var(--royal);
+      border-color: var(--peri);
+    }
+
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 240px;
+      background: var(--charcoal-2);
+      border: 2px solid var(--peri);
+      z-index: 10005;
+      padding: 6px 0;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu {
+      display: block;
+    }
+
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 10px 16px;
+      color: var(--lav);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(112, 119, 207, 0.22);
+    }
+
+    .nav-dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-dropdown-menu a:hover {
+      background: var(--royal);
+      color: var(--white);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: var(--royal);
+      color: var(--white);
+      border: 1px solid var(--peri);
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 22px;
+      border: 2px solid var(--peri);
+      background: var(--peri);
+      color: var(--white);
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    }
+
+    .btn:hover {
+      background: var(--peri-hover);
+      border-color: var(--white);
+    }
+
+    .btn-emerald {
+      background: var(--emerald-dk);
+      border-color: var(--emerald);
+      color: var(--white);
+    }
+
+    .btn-emerald:hover {
+      background: var(--emerald);
+      color: var(--charcoal);
+      border-color: var(--white);
+    }
+
+    .btn-dark {
+      background: var(--charcoal);
+      border-color: var(--peri);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background: var(--royal);
+      border-color: var(--white);
+    }
+
+    .btn-outline-light {
+      background: transparent;
+      border-color: var(--white);
+      color: var(--white);
+    }
+
+    .btn-outline-light:hover {
+      background: var(--white);
+      color: var(--royal);
+    }
+
+    .btn-godaddy-slot {
+      background: #1B1B1B;
+      border: 2px dashed var(--lav-bdr);
+      color: var(--lav);
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 13.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 11px 16px;
+      width: 100%;
+      cursor: not-allowed;
+      opacity: 0.92;
+      display: block;
+      text-align: center;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 52px 0 56px;
+      border-bottom: 4px solid var(--peri);
+      color: var(--white);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--emerald);
+      color: var(--charcoal);
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: clamp(36px, 4.8vw, 56px);
+      line-height: 1.06;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+      color: var(--white);
+    }
+
+    .hero-lead {
+      font-size: 16.5px;
+      color: var(--lav);
+      margin: 0 0 22px;
+      max-width: 580px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 440px;
+      margin-bottom: 24px;
+    }
+
+    .cd-box {
+      background: rgba(22, 22, 22, 0.85);
+      border: 2px solid var(--peri);
+      padding: 10px 8px;
+      text-align: center;
+    }
+
+    .cd-num {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 28px;
+      color: var(--emerald);
+      line-height: 1;
+      display: block;
+    }
+
+    .cd-lbl {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--lav);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .hero-trust {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: var(--lav);
+      border-top: 1px solid rgba(142, 147, 218, 0.35);
+      padding-top: 14px;
+    }
+
+    .hero-stage {
+      background: var(--charcoal);
+      border: 3px solid var(--peri);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-stage-img-wrap {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background: #0F143A;
+      overflow: hidden;
+      border-bottom: 2px solid var(--peri);
+    }
+
+    .hero-stage-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-stage-caption {
+      padding: 14px 18px;
+      background: var(--royal);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      padding: 6px;
+      background: var(--charcoal);
+    }
+
+    .hero-thumb {
+      border: 2px solid #2D325A;
+      padding: 0;
+      background: var(--charcoal);
+      cursor: pointer;
+      height: 58px;
+      overflow: hidden;
+      opacity: 0.72;
+    }
+
+    .hero-thumb.active,
+    .hero-thumb:hover {
+      border-color: var(--emerald);
+      opacity: 1;
+    }
+
+    .hero-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Light & Dark Sections */
+    .section-light {
+      background: var(--white);
+      color: var(--charcoal);
+      padding: 64px 0;
+      border-bottom: 4px solid var(--peri);
+    }
+
+    .section-alt {
+      background: var(--row-alt);
+      color: var(--charcoal);
+      padding: 64px 0;
+      border-bottom: 4px solid var(--peri);
+    }
+
+    .section-dark {
+      background: rgba(22, 30, 84, 0.94);
+      color: var(--white);
+      padding: 64px 0;
+      border-bottom: 4px solid var(--peri);
+    }
+
+    .section-header {
+      margin-bottom: 34px;
+    }
+
+    .section-header h2 {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: clamp(28px, 3.6vw, 40px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 8px 0 10px;
+      line-height: 1.1;
+    }
+
+    .section-header p {
+      max-width: 780px;
+      margin: 0;
+      font-size: 15.5px;
+    }
+
+    /* 4-Station Grid */
+    .stations-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .station-card {
+      background: var(--white);
+      border: 2px solid var(--royal);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .station-img {
+      height: 220px;
+      background: var(--royal-deep);
+      border-bottom: 3px solid var(--peri);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .station-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .station-num {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--royal);
+      color: var(--white);
+      border: 1px solid var(--peri);
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      text-transform: uppercase;
+    }
+
+    .station-body {
+      padding: 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .station-body h3 {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 24px;
+      color: var(--royal);
+      margin: 0 0 8px;
+      text-transform: uppercase;
+    }
+
+    .station-body p {
+      font-size: 14.5px;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+
+    .station-list {
+      margin: 0 0 16px;
+      padding-left: 18px;
+      font-size: 13.5px;
+      color: var(--charcoal);
+      line-height: 1.65;
+    }
+
+    .station-meta {
+      background: var(--lav);
+      border-left: 4px solid var(--peri);
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--royal);
+      font-weight: 500;
+    }
+
+    /* Program Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .price-card {
+      background: var(--white);
+      border: 2px solid var(--royal);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .price-card.featured {
+      border: 3px solid var(--emerald-dk);
+      background: #FAFFFD;
+    }
+
+    .price-tag-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 10px 0 6px;
+    }
+
+    .price-strike {
+      font-size: 16px;
+      color: #888888;
+      text-decoration: line-through;
+    }
+
+    .price-now {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 36px;
+      color: var(--emerald-dk);
+      line-height: 1;
+    }
+
+    .price-unit {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Birthday Spotlight */
+    .bday-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .run-of-show {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .ros-step {
+      background: rgba(22, 22, 22, 0.72);
+      border: 1px solid var(--peri);
+      border-left: 4px solid var(--emerald);
+      padding: 14px;
+    }
+
+    .ros-time {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 12px;
+      color: var(--emerald);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .ros-title {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 17px;
+      color: var(--white);
+      margin: 4px 0;
+      text-transform: uppercase;
+    }
+
+    /* Studio 2141 Tour */
+    .studio-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .studio-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .spec-tile {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--royal);
+      padding: 14px;
+    }
+
+    .spec-tile strong {
+      display: block;
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 18px;
+      color: var(--royal);
+      text-transform: uppercase;
+    }
+
+    .spec-tile span {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    /* Estimator & Booking */
+    .book-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .panel-box {
+      background: var(--white);
+      color: var(--charcoal);
+      border: 2px solid var(--royal);
+      padding: 28px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--royal);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 5px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--lav-bdr);
+      background: var(--row-alt);
+      color: var(--charcoal);
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: 2px solid var(--peri);
+      background: var(--white);
+    }
+
+    .quote-summary {
+      background: var(--royal);
+      color: var(--white);
+      border: 2px solid var(--peri);
+      padding: 18px 20px;
+      margin: 14px 0 18px;
+    }
+
+    /* Newsletter Bar */
+    .newsletter-bar {
+      background: var(--royal);
+      color: var(--white);
+      border: 2px solid var(--peri);
+      padding: 26px 28px;
+      margin-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* FAQ Grid */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .faq-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--peri);
+      padding: 18px 20px;
+    }
+
+    .faq-card h3 {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 18px;
+      color: var(--royal);
+      margin: 0 0 6px;
+      text-transform: uppercase;
+    }
+
+    .faq-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--charcoal);
+      color: var(--lav);
+      border-top: 4px solid var(--peri);
+      padding: 40px 0 32px;
+      font-size: 13.5px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #2D2D2D;
+      margin-bottom: 18px;
+    }
+
+    footer a {
+      color: var(--lav);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .stations-grid,
+      .pricing-grid,
+      .bday-grid,
+      .studio-grid,
+      .book-grid,
+      .faq-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-menu-btn {
+        display: inline-block;
+      }
+
+      .nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 10px;
+        border-top: 1px solid #303885;
+      }
+
+      .nav-menu.open {
+        display: flex;
+      }
+
+      .nav-dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border-width: 1px;
+        margin-left: 12px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .run-of-show,
+      .studio-specs {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Jan 5 Grand Opening Ribbon -->
+  <div class="launch-ribbon">
+    <span class="osito-editable">
+      <strong>OPENING JANUARY 5 AT 2141 MISSION ST, SUITE 201 (SAN FRANCISCO)</strong>
+      — Lock in <strong>25% OFF</strong> Founding Studio Rates on 4-Station Programs &amp; VIP Drone Birthdays!
+    </span>
+    <a href="#book-now">RESERVE NOW &rarr;</a>
+  </div>
+
+  <!-- Sticky Navigation -->
+  <header id="osito-site-nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="./index.html">
+        <img src="./assets/ositologo-white.png" alt="Osito Drone Services Logo" />
+        <span class="nav-brand-badge">2141 MISSION ST • SUITE 201</span>
+      </a>
+
+      <button type="button" id="v2MobileMenuBtn" class="mobile-menu-btn" aria-expanded="false">MENU &#9776;</button>
+
+      <nav class="nav-menu" id="v2NavMenu" aria-label="Primary Navigation">
+        <a class="nav-link" href="#stations">4-Station Program</a>
+        <a class="nav-link" href="#birthdays">Birthdays</a>
+        <a class="nav-link" href="#studio-2141">2141 Mission Studio</a>
+        <div class="nav-dropdown" id="v2ToolboxDropdown">
+          <a class="nav-link" href="../toolbox.html" id="v2ToolboxTrigger">Toolbox &#9662;</a>
+          <div class="nav-dropdown-menu">
+            <a href="../flight-sim.html">3D San Francisco Flight Simulator</a>
+            <a href="../stl-editor.html">In-House 3D STL Editor</a>
+            <a href="../osito-design-tool.html">Osito Design &amp; Flowchart Studio</a>
+            <a href="../interactive-book.html">Interactive Book &amp; 15-Q Pilot Exam</a>
+            <a href="../osito-drone-academy.html#osito-coloring-books-downloads">Free STEM Coloring Books (PDF)</a>
+            <a href="../toolbox.html">All Toolbox Apps &rarr;</a>
+          </div>
+        </div>
+        <a class="nav-link" href="../admin.html" style="color:#8E93DA;">Staff</a>
+        <a class="btn btn-emerald" href="#book-now" style="padding:8px 16px; font-size:13.5px;">BOOK / 25% OFF</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO: 2141 Mission St Suite 201 Grand Opening -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow osito-editable">WEBSITE 2.0 PREVIEW • OPENING JAN 5, 2027 • MISSION DISTRICT SF</span>
+          <h1 class="osito-editable">SAN FRANCISCO'S 4-STATION INDOOR DRONE STUDIO &amp; BIRTHDAY ARENA</h1>
+          <p class="hero-lead osito-editable">
+            Moving into our brand-new loft at <strong>2141 Mission St, Suite 201</strong> on <strong>January 5</strong>.
+            Every youth session and private birthday party rotates through our 4 hands-on flight stations:
+            <strong>Hover</strong>, <strong>3D Flight Sim</strong>, <strong>Repair &amp; Build</strong>, and <strong>FPV Freestyle</strong>.
+          </p>
+
+          <!-- Live Countdown to Jan 5, 2027 -->
+          <div class="countdown-grid" aria-label="Countdown to January 5 Opening">
+            <div class="cd-box"><span class="cd-num" id="cdDays">--</span><span class="cd-lbl">Days</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdHours">--</span><span class="cd-lbl">Hours</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdMins">--</span><span class="cd-lbl">Mins</span></div>
+            <div class="cd-box"><span class="cd-num" id="cdSecs">--</span><span class="cd-lbl">Secs</span></div>
+          </div>
+
+          <div class="hero-ctas">
+            <a href="#book-now" class="btn btn-emerald" onclick="prefillV2Booking('lab4')">RESERVE 4-STATION PROGRAM</a>
+            <a href="#birthdays" class="btn">BOOK A BIRTHDAY ($371)</a>
+            <a href="../flight-sim.html" class="btn btn-outline-light">TRY 3D FLIGHT SIM</a>
+          </div>
+
+          <div class="hero-trust">
+            <span>&#10003; <strong>2141 Mission St, Suite 201</strong> (Near 16th St BART)</span>
+            <span>&#10003; <strong>100% Enclosed Netted Arena</strong></span>
+            <span>&#10003; <strong>Sub-250g Ducted Safety Drones</strong></span>
+          </div>
+        </div>
+
+        <!-- Interactive Studio & Arena Visual Stage -->
+        <div class="hero-stage">
+          <div class="hero-stage-img-wrap">
+            <img id="v2HeroMainImg" src="./assets/suite201-studio-hero.jpg" alt="2141 Mission St Suite 201 Indoor Drone Studio" />
+          </div>
+          <div class="hero-stage-caption">
+            <div>
+              <div id="v2HeroBadge" class="font-display" style="font-size:11.5px; color:#10B981;">2141 MISSION ST, SUITE 201 • SAN FRANCISCO</div>
+              <div id="v2HeroTitle" class="font-display" style="font-size:18px; color:#FFFFFF;">OUR NEW 1,074 SQ FT INDOOR DRONE STUDIO LOFT</div>
+            </div>
+            <a href="#studio-2141" class="btn btn-dark" style="padding:7px 12px; font-size:12px;">STUDIO FLOORPLAN</a>
+          </div>
+          <div class="hero-thumbs" id="v2HeroThumbs">
+            <button type="button" class="hero-thumb active" data-src="./assets/suite201-studio-hero.jpg" data-badge="2141 MISSION ST, SUITE 201 • SAN FRANCISCO" data-title="OUR NEW 1,074 SQ FT INDOOR DRONE STUDIO LOFT">
+              <img src="./assets/suite201-studio-hero.jpg" alt="Suite 201 Studio Render" />
+            </button>
+            <button type="button" class="hero-thumb" data-src="./assets/station-hover.jpg" data-badge="STATION 01 &amp; 04 • ENCLOSED NETTED FLIGHT" data-title="REAL YOUTH PILOTS INSIDE OUR NETTED HOVER &amp; LED ARENA">
+              <img src="./assets/station-hover.jpg" alt="Netted Hover Station" />
+            </button>
+            <button type="button" class="hero-thumb" data-src="./assets/station-fpv-freestyle.jpg" data-badge="STATION 04 • FPV FREESTYLE &amp; LED GATES" data-title="GLOWING LED OBSTACLE GATES &amp; FPV FREESTYLE TRACK">
+              <img src="./assets/station-fpv-freestyle.jpg" alt="FPV Freestyle LED Gates" />
+            </button>
+            <button type="button" class="hero-thumb" data-src="./assets/suite201-floorplan.png" data-badge="SUITE 201 LAYOUT • 10X30 FT COUPLED ARENA" data-title="STUDIO FLOORPLAN: 4 STATIONS + PARENT VIEWING ZONE">
+              <img src="./assets/suite201-floorplan.png" alt="Suite 201 Floorplan" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: THE 4-STATION DRONE PROGRAM -->
+  <section id="stations" class="section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow" style="background:var(--royal); color:var(--white);">CORE STUDIO CURRICULUM • ZERO EXPERIENCE REQUIRED</span>
+        <h2 class="osito-editable" style="color:var(--royal);">THE 4-STATION DRONE FLIGHT LAB PROGRAM</h2>
+        <p class="osito-editable" style="color:var(--muted);">
+          No lectures and no sitting on the sidelines. Every student rotates through all 4 dedicated stations inside our enclosed Mission District studio—building real stick control, engineering skills, and FPV confidence step by step.
+        </p>
+      </div>
+
+      <div class="stations-grid">
+        <!-- Station 1: Hover -->
+        <article class="station-card">
+          <div class="station-img">
+            <span class="station-num">STATION 01 • LINE-OF-SIGHT FUNDAMENTALS</span>
+            <img src="./assets/station-hover.jpg" alt="Hover Station with enclosed netting" loading="lazy" />
+          </div>
+          <div class="station-body">
+            <div>
+              <h3 class="osito-editable">1. HOVER STATION</h3>
+              <p class="osito-editable">
+                Master calm, precise takeoff, hover-in-place, yaw turns, and spot landings inside our enclosed floor-to-ceiling safety net using lightweight ducted micro-drones.
+              </p>
+              <ul class="station-list">
+                <li><strong>Mode-2 Stick Mastery:</strong> Throttle control, gentle pitch/roll, and box-pattern hovering.</li>
+                <li><strong>Sub-250g Ducted Fleet:</strong> Fully shielded propellers designed for safe indoor youth training.</li>
+                <li><strong>1-on-1 Coach Spotting:</strong> Certified instructors coach every first takeoff and landing.</li>
+              </ul>
+            </div>
+            <div class="station-meta">Hardware: CUB-75 / MiniCub65 Ducted Trainers • ExpressLRS RadioMaster Controllers</div>
+          </div>
+        </article>
+
+        <!-- Station 2: 3D Flight Simulator -->
+        <article class="station-card">
+          <div class="station-img">
+            <span class="station-num">STATION 02 • 4-TABLET 3D SIM POD</span>
+            <img src="./assets/station-sim-bench.jpg" alt="4-Tablet 3D Simulator Station and ELRS radios" loading="lazy" />
+          </div>
+          <div class="station-body">
+            <div>
+              <h3 class="osito-editable">2. 3D FLIGHT SIMULATOR STATION</h3>
+              <p class="osito-editable">
+                Build real thumb muscle memory before touching a live battery. Pilots fly our custom San Francisco 3D Flight Simulator using real USB-C RadioMaster transmitters.
+              </p>
+              <ul class="station-list">
+                <li><strong>Zero-Crash Confidence:</strong> Practice throttle discipline, gate lines, and flips risk-free.</li>
+                <li><strong>Real Radio Controllers:</strong> Exact same sticks and gimbals used in our live netted arena.</li>
+                <li><strong>Practice at Home Too:</strong> Every student gets free browser access to our 3D SF Flight Sim.</li>
+              </ul>
+            </div>
+            <div class="station-meta" style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+              <span>4-Tablet Sim Pod • Real ELRS USB-C Sticks</span>
+              <a href="../flight-sim.html" style="color:var(--royal); font-weight:700; text-decoration:underline;">Launch Free 3D Sim &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Station 3: Repair & Build -->
+        <article class="station-card">
+          <div class="station-img">
+            <span class="station-num">STATION 03 • CRASH, BUILD, REPEAT</span>
+            <img src="./assets/station-repair-build.jpg" alt="Repair and Build Bench" loading="lazy" />
+          </div>
+          <div class="station-body">
+            <div>
+              <h3 class="osito-editable">3. REPAIR &amp; BUILD BENCH</h3>
+              <p class="osito-editable">
+                Real pilots know how to fix their own aircraft. At our oak workbench, students learn how quadcopters actually work—swapping props, mounting 3D-printed parts, and running pre-flight checks.
+              </p>
+              <ul class="station-list">
+                <li><strong>Hands-On Pit Crew Skills:</strong> CW/CCW propeller direction, motor orientation, and frame swaps.</li>
+                <li><strong>In-House 3D-Printed Spares:</strong> Frames, canopies, and TPU bumpers printed on our SF Bambu P2S farm.</li>
+                <li><strong>Battery &amp; Pre-Flight Safety:</strong> 1S LiPo care, fireproof charging habits, and failsafe testing.</li>
+              </ul>
+            </div>
+            <div class="station-meta">Tools &amp; Parts Included • Modular 3D-Printed Frames • Safe Low-Voltage 1S Bench</div>
+          </div>
+        </article>
+
+        <!-- Station 4: FPV Freestyle -->
+        <article class="station-card">
+          <div class="station-img">
+            <span class="station-num">STATION 04 • 10X30 FT LED ARENA</span>
+            <img src="./assets/station-fpv-freestyle.jpg" alt="FPV Freestyle and LED Gate Arena" loading="lazy" />
+          </div>
+          <div class="station-body">
+            <div>
+              <h3 class="osito-editable">4. FPV FREESTYLE &amp; LED GATE ARENA</h3>
+              <p class="osito-editable">
+                Put on First-Person View (FPV) goggles and fly directly from the drone's cockpit through glowing LED gates, suspended hoops, and freestyle dive lines in our 10&times;30 ft studio arena.
+              </p>
+              <ul class="station-list">
+                <li><strong>Live Cockpit View:</strong> Low-latency FPV goggles plus big spectator screens for parents &amp; friends.</li>
+                <li><strong>Glowing LED Course:</strong> Multi-bay race gates, elevated helipads, and freestyle obstacle lines.</li>
+                <li><strong>Progression Badges:</strong> Advance from guided hover laps to timed FPV freestyle runs.</li>
+              </ul>
+            </div>
+            <div class="station-meta">10&times;30 ft Coupled 3-Bay Netted Arena • GlowGate LED Course • Live Spectator Screens</div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 4-Station Program Pricing Cards -->
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div>
+            <span class="font-display" style="background:var(--lav); color:var(--royal); border:1px solid var(--lav-bdr); font-size:11.5px; padding:4px 9px;">STUDIO DROP-IN / FOUNDING PASS</span>
+            <h3 class="font-display osito-editable" style="font-size:22px; color:var(--royal); margin:12px 0 4px;">4-STATION ROTATION PASS</h3>
+            <div class="price-tag-row">
+              <span class="price-strike osito-editable">$45</span>
+              <span class="price-now osito-editable">$35</span>
+              <span class="price-unit">/ pilot (90 min)</span>
+            </div>
+            <p class="osito-editable" style="font-size:13.5px; color:var(--muted); margin:0 0 16px;">
+              Perfect for first-time flyers and weekend open-lab sessions at 2141 Mission St. Includes guided rotation across Hover, Sim, Repair/Build, and FPV Freestyle.
+            </p>
+          </div>
+          <div>
+            <a href="#book-now" onclick="prefillV2Booking('dropin')" class="btn" style="width:100%; margin-bottom:8px;">RESERVE SPOT (25% OFF)</a>
+            <span class="btn-godaddy-slot" data-godaddy-checkout-slot="dropin">GoDaddy Online Checkout — Opening Jan 5</span>
+          </div>
+        </div>
+
+        <div class="price-card featured">
+          <div>
+            <span class="font-display" style="background:var(--emerald); color:var(--charcoal); font-size:11.5px; padding:4px 9px;">MOST POPULAR • GROUPS, SCHOOLS &amp; CAMPS</span>
+            <h3 class="font-display osito-editable" style="font-size:22px; color:var(--royal); margin:12px 0 4px;">2-HR 4-STATION FLIGHT LAB</h3>
+            <div class="price-tag-row">
+              <span class="price-strike osito-editable">$950</span>
+              <span class="price-now osito-editable">$713</span>
+              <span class="price-unit">/ up to 15 pilots</span>
+            </div>
+            <p class="osito-editable" style="font-size:13.5px; color:var(--muted); margin:0 0 16px;">
+              Save $237 (25% Off Launch Special). Full private 2-hour 4-station rotation (Hover, Sim, Repair/Build, FPV Freestyle) with 3 certified instructors at Suite 201 or pop-up at your venue.
+            </p>
+          </div>
+          <div>
+            <a href="#book-now" onclick="prefillV2Booking('lab4')" class="btn btn-emerald" style="width:100%; margin-bottom:8px;">BOOK 4-STATION LAB</a>
+            <span class="btn-godaddy-slot" data-godaddy-checkout-slot="lab4">GoDaddy Online Checkout — Opening Jan 5</span>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div>
+            <span class="font-display" style="background:var(--royal); color:var(--white); font-size:11.5px; padding:4px 9px;">AFTER-SCHOOL COHORT • 6 WEEKS</span>
+            <h3 class="font-display osito-editable" style="font-size:22px; color:var(--royal); margin:12px 0 4px;">6-WEEK 4-STATION ACADEMY</h3>
+            <div class="price-tag-row">
+              <span class="price-strike osito-editable">$2,400</span>
+              <span class="price-now osito-editable">$1,800</span>
+              <span class="price-unit">/ cohort ($300/wk)</span>
+            </div>
+            <p class="osito-editable" style="font-size:13.5px; color:var(--muted); margin:0 0 16px;">
+              Save $600 (25% Off Launch Special — just $120/student for 15 pilots). Weekly progression through all 4 stations culminating in a live FPV Freestyle LED gate showcase.
+            </p>
+          </div>
+          <div>
+            <a href="#book-now" onclick="prefillV2Booking('school6')" class="btn btn-dark" style="width:100%; margin-bottom:8px;">RESERVE 6-WEEK COHORT</a>
+            <span class="btn-godaddy-slot" data-godaddy-checkout-slot="school6">GoDaddy Online Checkout — Opening Jan 5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: VIP DRONE BIRTHDAY PARTIES -->
+  <section id="birthdays" class="section-dark">
+    <div class="container">
+      <div class="bday-grid">
+        <div>
+          <span class="eyebrow">PRIVATE STUDIO PARTIES • 2141 MISSION ST, SUITE 201</span>
+          <h2 class="font-display osito-editable" style="font-size:clamp(30px, 4vw, 44px); margin:6px 0 12px; line-height:1.08;">
+            VIP DRONE BIRTHDAY PARTIES — ALL 4 STATIONS INCLUDED
+          </h2>
+          <p class="osito-editable" style="font-size:16px; color:var(--lav); margin:0 0 18px;">
+            Give your birthday pilot the entire indoor drone loft for 2 unforgettable hours! Every guest rotates through our <strong>Hover Cage</strong>, <strong>3D Flight Sim Pod</strong>, <strong>Repair &amp; Build Bench</strong>, and <strong>Glowing LED FPV Freestyle Arena</strong>—with our in-unit kitchenette and wood party tables ready for pizza and cake.
+          </p>
+
+          <div style="background:rgba(22, 22, 22, 0.85); border:2px solid var(--emerald); padding:18px 20px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+            <div>
+              <div class="font-display" style="font-size:12px; color:var(--emerald);">25% OFF JAN 5 LAUNCH SPECIAL (SAVE $124)</div>
+              <div style="display:flex; align-items:baseline; gap:10px; margin-top:4px;">
+                <span class="osito-editable" style="font-size:18px; color:#9CA3AF; text-decoration:line-through;">$495</span>
+                <span class="font-display osito-editable" style="font-size:40px; color:var(--emerald); line-height:1;">$371</span>
+                <span style="font-size:14px; color:var(--lav);">/ 2 Hours • Up to 12 Pilots (~$31/kid)</span>
+              </div>
+            </div>
+            <div style="font-size:12.5px; color:var(--lav);">
+              <div>&#10003; Extra pilots: <strong>+$15/kid</strong> (reg. $20)</div>
+              <div>&#10003; Optional Take-Home 3D Kit: <strong>+$26/kid</strong> (reg. $35)</div>
+            </div>
+          </div>
+
+          <h3 class="font-display" style="font-size:18px; color:var(--white); margin:0 0 8px;">2-HOUR BIRTHDAY RUN-OF-SHOW</h3>
+          <div class="run-of-show">
+            <div class="ros-step">
+              <div class="ros-time">0:00 – 0:25 • WARMUP</div>
+              <div class="ros-title">Safety Briefing &amp; 3D Sim Pod</div>
+              <div style="font-size:12.5px; color:var(--lav);">Pilot goggles, Mode-2 stick tutorial on our 4-Tablet 3D SF Flight Simulator.</div>
+            </div>
+            <div class="ros-step">
+              <div class="ros-time">0:25 – 0:55 • LIVE FLIGHT &amp; PIT CREW</div>
+              <div class="ros-title">Hover Cage + Repair/Build Bench</div>
+              <div style="font-size:12.5px; color:var(--lav);">First live takeoffs inside the safety net paired with hands-on prop &amp; frame pit-crew challenges.</div>
+            </div>
+            <div class="ros-step">
+              <div class="ros-time">0:55 – 1:30 • MAIN EVENT</div>
+              <div class="ros-title">FPV Freestyle &amp; LED Gate Races</div>
+              <div style="font-size:12.5px; color:var(--lav);">Glowing LED hoop races and FPV cockpit runs in the 10&times;30 ft arena while parents watch on 4K screens.</div>
+            </div>
+            <div class="ros-step">
+              <div class="ros-time">1:30 – 2:00 • CELEBRATION</div>
+              <div class="ros-title">Cake, Pizza &amp; Pilot Wings</div>
+              <div style="font-size:12.5px; color:var(--lav);">Celebrate at our wood party tables with in-unit kitchenette access and Osito Pilot Certificates.</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+            <a href="#book-now" onclick="prefillV2Booking('party')" class="btn btn-emerald">RESERVE A BIRTHDAY DATE ($371)</a>
+            <a href="#studio-2141" class="btn btn-outline-light">SEE THE PARTY SPACE</a>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="border:3px solid var(--peri); background:var(--charcoal);">
+            <img src="./assets/birthday-arena.jpg" alt="Kids flying drones at birthday party arena" loading="lazy" style="width:100%; height:260px; object-fit:cover; display:block; border-bottom:2px solid var(--peri);" />
+            <div style="padding:14px 16px;">
+              <div class="font-display" style="font-size:12px; color:var(--emerald);">ZERO STRESS FOR PARENTS</div>
+              <p style="font-size:13.5px; color:var(--lav); margin:4px 0 0;">
+                We supply 100% of the drones, spare batteries, safety eyewear, controllers, and 3 dedicated coaches. Just bring the cake and guests!
+              </p>
+            </div>
+          </div>
+          <div style="border:2px solid var(--peri); background:var(--charcoal);">
+            <img src="./assets/birthday-racing.jpg" alt="Youth pilots racing micro-drones through hoops" loading="lazy" style="width:100%; height:200px; object-fit:cover; display:block;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: INSIDE 2141 MISSION ST, SUITE 201 -->
+  <section id="studio-2141" class="section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow" style="background:var(--royal); color:var(--white);">NEW SAN FRANCISCO HQ • OPENING JANUARY 5, 2027</span>
+        <h2 class="osito-editable" style="color:var(--royal);">INSIDE 2141 MISSION ST, SUITE 201</h2>
+        <p class="osito-editable" style="color:var(--muted);">
+          Located in the heart of San Francisco's Mission District (between 17th &amp; 18th St, steps from 16th St Mission BART), our sunlit 1,074 sq ft hardwood loft is purpose-built for safe indoor youth flight, hands-on repair benches, and weekend birthday parties.
+        </p>
+      </div>
+
+      <div class="studio-grid">
+        <div style="background:var(--white); border:2px solid var(--royal); padding:16px;">
+          <img id="v2StudioMainImg" src="./assets/suite201-floorplan.png" alt="2141 Mission St Suite 201 Studio Floorplan" loading="lazy" style="width:100%; height:auto; display:block; border:1px solid var(--border); margin-bottom:12px;" />
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="btn" style="padding:8px 14px; font-size:13px;" onclick="setStudioView('./assets/suite201-floorplan.png', 'Suite 201 Floorplan: 10x30 ft Arena + 2 Kids Tables')">FLOORPLAN</button>
+            <button type="button" class="btn btn-dark" style="padding:8px 14px; font-size:13px;" onclick="setStudioView('./assets/suite201-studio-hero.jpg', 'Suite 201 Loft Interior Render')">LOFT INTERIOR</button>
+            <button type="button" class="btn btn-dark" style="padding:8px 14px; font-size:13px;" onclick="setStudioView('./assets/suite201-skycube-hero.jpg', 'SkyCube 1330 LED Gate Arena')">LED GATE ARENA</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="studio-specs">
+            <div class="spec-tile">
+              <strong>1,074 SQ FT</strong>
+              <span>26' &times; 41' Open Hardwood Loft (11' Ceilings)</span>
+            </div>
+            <div class="spec-tile">
+              <strong>10' &times; 30' ARENA</strong>
+              <span>Coupled 3-Bay Floor-to-Ceiling Netted LED Track</span>
+            </div>
+            <div class="spec-tile">
+              <strong>4 DEDICATED ZONES</strong>
+              <span>Hover, 4-Tablet Sim, Repair Bench &amp; FPV Freestyle</span>
+            </div>
+            <div class="spec-tile">
+              <strong>KITCHENETTE &amp; LOUNGE</strong>
+              <span>In-Unit Birthday Prep Area &amp; 4K Spectator Desk</span>
+            </div>
+          </div>
+
+          <div style="background:var(--white); border:2px solid var(--royal); padding:20px;">
+            <h3 class="font-display" style="font-size:20px; color:var(--royal); margin:0 0 8px;">STUDIO ADDRESS &amp; LAUNCH SCHEDULE</h3>
+            <p style="font-size:14px; color:var(--charcoal); margin:0 0 10px;">
+              <strong>Osito Drone Studio</strong><br />
+              2141 Mission St, Suite 201, San Francisco, CA 94110<br />
+              Email: <a href="mailto:info@ositodrone.com" style="color:var(--royal); font-weight:700;">info@ositodrone.com</a>
+            </p>
+            <ul style="font-size:13.5px; color:var(--muted); padding-left:18px; margin:0 0 14px; line-height:1.65;">
+              <li><strong>Jan 5, 2027:</strong> Move-in &amp; Founding Pilot Preview Week</li>
+              <li><strong>Weekdays (3:30–5:30 PM):</strong> After-School 4-Station Cohorts</li>
+              <li><strong>Weekdays (6:00–8:30 PM):</strong> Micro FPV Freestyle &amp; Open Arena</li>
+              <li><strong>Weekends:</strong> VIP Drone Birthday Parties &amp; 4-Station Drop-Ins</li>
+            </ul>
+            <a href="#book-now" class="btn btn-emerald" style="width:100%;">LOCK IN JAN 5 FOUNDING RATE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: INTERACTIVE QUOTE ESTIMATOR & BOOKING FORM -->
+  <section id="book-now" class="section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">25% OFF STUDIO LAUNCH SPECIAL • INSTANT ESTIMATE</span>
+        <h2 class="osito-editable">ESTIMATE &amp; RESERVE YOUR 4-STATION SESSION OR BIRTHDAY</h2>
+        <p class="osito-editable" style="color:var(--lav);">
+          Calculate your exact 25% Off Founding Launch rate below, then send your preferred date. Online card checkout via GoDaddy Payments is being wired up for our January 5 opening—zero deposit required to hold a preview inquiry today.
+        </p>
+      </div>
+
+      <div class="book-grid">
+        <!-- Instant Estimator -->
+        <div class="panel-box">
+          <h3 class="font-display" style="font-size:24px; color:var(--royal); margin:0 0 14px;">1. INSTANT QUOTE ESTIMATOR</h3>
+
+          <label class="form-label" for="v2EstType">Select Program or Birthday Package</label>
+          <select id="v2EstType" class="form-select">
+            <option value="party">VIP Drone Birthday Party — All 4 Stations ($371 w/ 25% Off | Reg. $495)</option>
+            <option value="lab4" selected>2-Hr 4-Station Flight Lab — Hover, Sim, Repair &amp; FPV ($713 w/ 25% Off | Reg. $950)</option>
+            <option value="school6">6-Week 4-Station After-School Cohort ($1,800 w/ 25% Off | Reg. $2,400)</option>
+            <option value="dropin">Founding Cadet 4-Station Rotation Pass ($35/pilot w/ 25% Off | Reg. $45)</option>
+          </select>
+
+          <label class="form-label" for="v2EstCount">Number of Pilots: <span id="v2EstCountVal" style="color:var(--emerald-dk);">12 Pilots</span></label>
+          <input id="v2EstCount" type="range" min="1" max="30" value="12" style="width:100%; accent-color:var(--peri); margin-bottom:14px;" />
+
+          <label style="display:flex; align-items:center; gap:8px; font-size:13.5px; margin-bottom:10px; cursor:pointer;">
+            <input id="v2EstKit" type="checkbox" />
+            <span>Add Take-Home 3D-Printed Kit (<strong>+$26/pilot</strong> w/ 25% Off | Reg. $35)</span>
+          </label>
+
+          <label style="display:flex; align-items:center; gap:8px; font-size:13.5px; margin-bottom:14px; cursor:pointer;">
+            <input id="v2EstDiscount" type="checkbox" checked />
+            <span>Apply <strong>25% Off Jan 5 Studio Launch Special</strong></span>
+          </label>
+
+          <div class="quote-summary">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div class="font-display" style="font-size:12px; color:#8E93DA;">ESTIMATED TOTAL</div>
+                <div style="display:flex; align-items:baseline; gap:10px;">
+                  <span id="v2EstStrike" style="font-size:18px; color:#A5B4FC; text-decoration:line-through;">$950</span>
+                  <span id="v2EstTotal" class="font-display" style="font-size:40px; color:var(--emerald); line-height:1;">$713</span>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <span id="v2EstSaveBadge" class="font-display" style="display:inline-block; background:var(--emerald); color:var(--charcoal); font-size:12px; padding:4px 10px;">SAVE $237 (25% OFF)</span>
+                <div id="v2EstPerPilot" style="font-size:13px; color:var(--lav); margin-top:4px;">$59 / pilot</div>
+              </div>
+            </div>
+            <p id="v2EstDesc" style="font-size:12.5px; color:var(--lav); margin:12px 0 0; border-top:1px solid rgba(255,255,255,0.18); padding-top:10px;"></p>
+          </div>
+
+          <button type="button" id="v2CopyEstimateBtn" class="btn btn-emerald" style="width:100%; margin-bottom:10px;">COPY ESTIMATE TO BOOKING FORM &rarr;</button>
+          <span class="btn-godaddy-slot" data-godaddy-checkout-slot="estimator">GoDaddy Online Card Checkout — Activating Jan 5</span>
+        </div>
+
+        <!-- Booking & Pre-Registration Form -->
+        <div class="panel-box">
+          <h3 class="font-display" style="font-size:24px; color:var(--royal); margin:0 0 6px;">2. REQUEST YOUR DATE / PRE-REGISTER</h3>
+          <p style="font-size:13.5px; color:var(--muted); margin:0 0 16px;">Send your preferred date or program question directly to our 2141 Mission St team.</p>
+
+          <div id="v2BookingError" role="alert" style="display:none; background:#FEE2E2; border-left:4px solid #EF4444; color:#991B1B; padding:10px 12px; font-size:13px; margin-bottom:14px;"></div>
+
+          <form id="ositoV2BookingForm" novalidate onsubmit="return false;">
+            <label class="form-label" for="v2BookName">Your Name *</label>
+            <input id="v2BookName" class="form-input" type="text" required placeholder="Parent, Teacher, or Organizer Name" />
+
+            <label class="form-label" for="v2BookEmail">Your Email *</label>
+            <input id="v2BookEmail" class="form-input" type="email" required placeholder="you@example.com" />
+
+            <label class="form-label" for="v2BookPhone">Phone (Optional)</label>
+            <input id="v2BookPhone" class="form-input" type="tel" placeholder="(415) 555-0199" />
+
+            <label class="form-label" for="v2BookDetails">Program, Birthday Date &amp; Pilot Count *</label>
+            <textarea id="v2BookDetails" class="form-textarea" rows="4" required placeholder="Tell us if you're booking the 4-Station Flight Lab or a VIP Drone Birthday Party, target date (Jan 5+), and number of pilots..."></textarea>
+
+            <button id="v2BookSubmitBtn" type="submit" class="btn" style="width:100%;">SEND BOOKING REQUEST</button>
+          </form>
+
+          <div id="v2BookingSuccess" role="status" aria-live="polite" style="display:none; background:var(--lav); border:2px solid var(--emerald-dk); padding:18px; margin-top:14px; text-align:center;">
+            <div class="font-display" style="font-size:22px; color:var(--royal);">YOUR MESSAGE HAS BEEN SENT.</div>
+            <p style="font-size:14px; color:var(--emerald-dk); font-weight:700; margin:6px 0 0;">Thank you! We will be in touch within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Studio Launch Newsletter Bar -->
+      <div class="newsletter-bar" id="osito-v2-newsletter-bar">
+        <div style="max-width:600px;">
+          <span class="font-display" style="background:var(--peri); color:var(--white); font-size:11px; padding:4px 10px;">JAN 5 GRAND OPENING LIST</span>
+          <h3 class="font-display" style="font-size:24px; margin:8px 0 4px;">GET 2141 MISSION ST OPEN-FLY DATES &amp; 25%-OFF INVITES</h3>
+          <p style="font-size:13.5px; color:var(--lav); margin:0;">Join our Mission District studio list for opening week invites, weekend 4-station drop-ins, and birthday availability.</p>
+        </div>
+        <form id="ositoV2SubscribeForm" novalidate onsubmit="return false;" style="display:flex; gap:10px; flex-wrap:wrap; flex:1; min-width:280px; justify-content:flex-end;">
+          <input id="v2SubEmail" type="email" required placeholder="Enter your email address..." style="flex:1; min-width:210px; padding:12px 14px; border:1px solid var(--lav-bdr); background:var(--white); color:var(--charcoal); font-size:14px;" />
+          <button id="v2SubBtn" type="submit" class="btn btn-emerald" style="padding:12px 22px;">SUBSCRIBE</button>
+        </form>
+        <div id="v2SubFeedback" role="status" aria-live="polite" style="display:none; width:100%; background:rgba(22,22,22,0.85); border:2px solid var(--emerald); padding:14px 18px; font-size:13.5px; color:var(--white);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: SAFETY FIRST & FAQ -->
+  <section id="safety-faq" class="section-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow" style="background:var(--royal); color:var(--white);">SAFETY FIRST, ALWAYS</span>
+        <h2 style="color:var(--royal);">STUDIO SAFETY &amp; PARENT FAQ</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-card">
+          <h3>Are the drones safe for beginners and young kids?</h3>
+          <p>Yes. Every training drone is sub-250g with full 360-degree ducted propeller guards, flown exclusively inside our enclosed floor-to-ceiling safety netting with protective eyewear provided.</p>
+        </div>
+        <div class="faq-card">
+          <h3>What ages can join the 4-Station Program &amp; Birthdays?</h3>
+          <p>Our 4-Station rotation is built for ages 7–17 (and adults for evening FPV sessions!). Younger pilots start on the 3D Simulator and assisted Hover cage before moving into FPV Freestyle.</p>
+        </div>
+        <div class="faq-card">
+          <h3>Do we need to bring our own drones or controllers?</h3>
+          <p>No—Osito Drone provides 100% of the fleet, RadioMaster ELRS controllers, FPV goggles, tablets, repair tools, and charged batteries. Signed parent/participant waivers are completed at check-in.</p>
+        </div>
+        <div class="faq-card">
+          <h3>When does the 2141 Mission St, Suite 201 studio open?</h3>
+          <p>Our target launch is <strong>January 5, 2027</strong>. You can lock in our 25% Off Founding Launch pricing today for January/February 4-Station cohorts and weekend VIP Birthday Parties.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="./assets/ositologo-white.png" alt="Osito Drone Services" style="height:36px; margin-bottom:10px; display:block;" />
+          <p style="margin:0 0 8px; color:var(--lav);">
+            <strong>Osito Drone Studio (Website 2.0)</strong><br />
+            2141 Mission St, Suite 201, San Francisco, CA 94110<br />
+            Opening January 5, 2027 • <a href="mailto:info@ositodrone.com">info@ositodrone.com</a>
+          </p>
+        </div>
+        <div>
+          <div class="font-display" style="color:var(--white); font-size:15px; margin-bottom:8px;">PROGRAMS &amp; STUDIO</div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <a href="#stations">4-Station Flight Lab (Hover, Sim, Repair, FPV)</a>
+            <a href="#birthdays">VIP Drone Birthday Parties</a>
+            <a href="#studio-2141">2141 Mission St, Suite 201 Tour</a>
+            <a href="#book-now">Instant Quote &amp; Booking</a>
+          </div>
+        </div>
+        <div>
+          <div class="font-display" style="color:var(--white); font-size:15px; margin-bottom:8px;">TOOLBOX &amp; MORE</div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <a href="../flight-sim.html">3D San Francisco Flight Simulator</a>
+            <a href="../stl-editor.html">In-House 3D STL Editor</a>
+            <a href="../osito-design-tool.html">Osito Design &amp; Flowchart Studio</a>
+            <a href="../interactive-book.html">Interactive Book &amp; Pilot Exam</a>
+            <a href="../custom-aerial-solutions.html" style="color:#8E93DA;">Commercial Aerial Services (Part 107)</a>
+            <a href="../admin.html" style="color:#8E93DA;">Staff Admin Portal</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:12.5px; color:#9CA3AF;">
+        <div>Copyright &copy; 2026–2027 Osito Drone LLC — San Francisco, CA. All Rights Reserved.</div>
+        <div style="display:flex; gap:16px;">
+          <a href="../privacy-policy.html">Privacy Policy</a>
+          <a href="../index.html">View Live v1 Site</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- No-Code Visual Editor Mode Toolbar (?editor=1) -->
+  <div id="osito-nocode-toolbar" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:999999; background:#232A68; border-top:2px solid #7077CF; padding:10px 24px; box-shadow:0 -4px 20px rgba(0,0,0,0.5); align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+      <span class="font-display" style="background:#161E54; color:#FFFFFF; border:1px solid #7077CF; padding:5px 12px; font-size:13px;">OSITO 2.0 NO-CODE EDITOR</span>
+      <span style="font-size:12.5px; color:#EEF0FA;">Click any highlighted text or price to edit directly, then click Export HTML.</span>
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button type="button" id="ositoExportHtmlBtn" class="btn btn-emerald" style="padding:8px 14px; font-size:13px;">EXPORT HTML</button>
+      <button type="button" id="ositoExitEditorBtn" class="btn btn-dark" style="padding:8px 14px; font-size:13px;">EXIT EDITOR</button>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    // 1. Mobile Nav Toggle
+    var mobBtn = document.getElementById('v2MobileMenuBtn');
+    var navMenu = document.getElementById('v2NavMenu');
+    if (mobBtn && navMenu) {
+      mobBtn.onclick = function() {
+        var open = navMenu.classList.toggle('open');
+        mobBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+    }
+
+    // 2. Countdown to Jan 5, 2027 (09:00 AM PST)
+    var targetTs = new Date('2027-01-05T09:00:00-08:00').getTime();
+    function tickCountdown() {
+      var diff = Math.max(0, targetTs - Date.now());
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      var elD = document.getElementById('cdDays');
+      var elH = document.getElementById('cdHours');
+      var elM = document.getElementById('cdMins');
+      var elS = document.getElementById('cdSecs');
+      if (elD) elD.textContent = String(d);
+      if (elH) elH.textContent = String(h).padStart(2, '0');
+      if (elM) elM.textContent = String(m).padStart(2, '0');
+      if (elS) elS.textContent = String(s).padStart(2, '0');
+    }
+    tickCountdown();
+    setInterval(tickCountdown, 1000);
+
+    // 3. Hero Stage Switcher
+    var heroThumbs = document.querySelectorAll('#v2HeroThumbs .hero-thumb');
+    var heroImg = document.getElementById('v2HeroMainImg');
+    var heroBadge = document.getElementById('v2HeroBadge');
+    var heroTitle = document.getElementById('v2HeroTitle');
+    for (var i = 0; i < heroThumbs.length; i++) {
+      heroThumbs[i].onclick = function() {
+        for (var j = 0; j < heroThumbs.length; j++) heroThumbs[j].classList.remove('active');
+        this.classList.add('active');
+        if (heroImg) heroImg.src = this.getAttribute('data-src');
+        if (heroBadge) heroBadge.textContent = this.getAttribute('data-badge');
+        if (heroTitle) heroTitle.textContent = this.getAttribute('data-title');
+      };
+    }
+
+    // 4. Studio 2141 Photo Switcher
+    window.setStudioView = function(src, altText) {
+      var el = document.getElementById('v2StudioMainImg');
+      if (el) {
+        el.src = src;
+        el.alt = altText || '2141 Mission St Suite 201 Studio';
+      }
+    };
+
+    // 5. Interactive Quote Estimator (Focused strictly on 4-Station Program + Birthdays)
+    var typeEl = document.getElementById('v2EstType');
+    var countEl = document.getElementById('v2EstCount');
+    var kitEl = document.getElementById('v2EstKit');
+    var discEl = document.getElementById('v2EstDiscount');
+    var countValEl = document.getElementById('v2EstCountVal');
+    var strikeEl = document.getElementById('v2EstStrike');
+    var totalEl = document.getElementById('v2EstTotal');
+    var saveEl = document.getElementById('v2EstSaveBadge');
+    var perEl = document.getElementById('v2EstPerPilot');
+    var descEl = document.getElementById('v2EstDesc');
+    var latestEstimateSummary = '';
+
+    function updateV2Estimator() {
+      if (!typeEl || !countEl) return;
+      var mode = typeEl.value;
+      var count = parseInt(countEl.value, 10) || 12;
+      var addKits = Boolean(kitEl && kitEl.checked);
+      var use25 = discEl ? discEl.checked : true;
+      var regTotal = 0;
+      var desc = '';
+
+      if (mode === 'party') {
+        var extraParty = Math.max(0, count - 12);
+        regTotal = 495 + (extraParty * 20) + (addKits ? count * 35 : 0);
+        desc = '2-Hour Private VIP Drone Birthday Party at 2141 Mission St, Suite 201 (all 4 stations: Hover, 3D Sim, Repair/Build, FPV Freestyle LED Arena + party tables & kitchenette).';
+      } else if (mode === 'lab4') {
+        var extraLab = Math.max(0, count - 15);
+        regTotal = 950 + (extraLab * 24) + (addKits ? count * 35 : 0);
+        desc = '2-Hour 4-Station Drone Flight Lab (Hover, 3D Sim Pod, Repair & Build Bench, FPV Freestyle LED Arena) with 3 certified instructors.';
+      } else if (mode === 'school6') {
+        var extraCohort = Math.max(0, count - 15);
+        regTotal = 2400 + (extraCohort * 80) + (addKits ? count * 35 : 0);
+        desc = '6-Week After-School 4-Station Drone Cohort ($300/wk Founding Rate) progressing through Hover, 3D Sim, Repair/Build, and FPV Freestyle.';
+      } else {
+        regTotal = (count * 45) + (addKits ? count * 35 : 0);
+        desc = '90-Minute Founding Cadet 4-Station Rotation Pass at 2141 Mission St, Suite 201 (Hover, 3D Sim, Repair & Build, FPV Freestyle).';
+      }
+
+      var finalTotal = use25 ? Math.round(regTotal * 0.75) : regTotal;
+      var savings = regTotal - finalTotal;
+
+      if (countValEl) countValEl.textContent = count + (count === 1 ? ' Pilot' : ' Pilots');
+      if (strikeEl) {
+        strikeEl.style.display = use25 ? 'inline' : 'none';
+        strikeEl.textContent = '$' + regTotal.toLocaleString();
+      }
+      if (totalEl) totalEl.textContent = '$' + finalTotal.toLocaleString();
+      if (saveEl) {
+        saveEl.style.display = use25 ? 'inline-block' : 'none';
+        saveEl.textContent = 'SAVE $' + savings.toLocaleString() + ' (25% OFF)';
+      }
+      if (perEl) perEl.textContent = '$' + Math.max(1, Math.round(finalTotal / count)) + ' / pilot';
+      if (descEl) descEl.textContent = desc;
+
+      latestEstimateSummary =
+        'Program: ' + typeEl.options[typeEl.selectedIndex].text + '\n' +
+        'Location: 2141 Mission St, Suite 201 (Opening Jan 5, 2027)\n' +
+        'Pilots: ' + count + '\n' +
+        'Take-Home 3D Kits: ' + (addKits ? 'Yes' : 'No') + '\n' +
+        'Estimated Total: $' + finalTotal.toLocaleString() + (use25 ? (' (25% Off Launch Special, Reg. $' + regTotal.toLocaleString() + ')') : '') + '\n\n' +
+        'Preferred Date / Notes: ';
+    }
+
+    [typeEl, countEl, kitEl, discEl].forEach(function(el) {
+      if (el) {
+        el.addEventListener('input', updateV2Estimator);
+        el.addEventListener('change', updateV2Estimator);
+      }
+    });
+    updateV2Estimator();
+
+    window.prefillV2Booking = function(mode) {
+      if (typeEl && mode) {
+        typeEl.value = mode;
+        if (mode === 'dropin' && countEl) countEl.value = '2';
+        else if (mode === 'party' && countEl) countEl.value = '12';
+        else if (countEl) countEl.value = '15';
+        updateV2Estimator();
+      }
+      var detailsEl = document.getElementById('v2BookDetails');
+      if (detailsEl) detailsEl.value = latestEstimateSummary;
+    };
+
+    var copyBtn = document.getElementById('v2CopyEstimateBtn');
+    if (copyBtn) {
+      copyBtn.onclick = function() {
+        var detailsEl = document.getElementById('v2BookDetails');
+        if (detailsEl) {
+          detailsEl.value = latestEstimateSummary;
+          detailsEl.focus();
+        }
+      };
+    }
+
+    // 6. Cloud Relay (Unencoded @ FormSubmit + ntfy.sh Cloud Inbox)
+    function isValidEmail(em) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(em || '').trim());
+    }
+
+    function sendV2CloudRelay(payload) {
+      var clean = {};
+      for (var k in payload) {
+        if (Object.prototype.hasOwnProperty.call(payload, k)) clean[k] = payload[k];
+      }
+      clean._template = 'table';
+      clean._captcha = 'false';
+
+      try {
+        fetch('https://ntfy.sh/osito_drone_inquiries_8a9f2c4e1b7d', {
+          method: 'POST',
+          body: JSON.stringify(clean)
+        }).catch(function() {});
+      } catch (e) {}
+
+      var fsPayload = {};
+      for (var fk in clean) {
+        if (Object.prototype.hasOwnProperty.call(clean, fk)) fsPayload[fk] = clean[fk];
+      }
+      delete fsPayload.actionType;
+      delete fsPayload.to;
+      delete fsPayload.cc;
+      delete fsPayload.recipient;
+      if (!fsPayload.name && fsPayload.email) {
+        fsPayload.name = String(fsPayload.email).split('@')[0];
+      }
+
+      try {
+        fetch('https://formsubmit.co/ajax/info@ositodrone.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(fsPayload)
+        }).catch(function() {});
+      } catch (e) {}
+    }
+
+    // 7. Booking Form Handler
+    var bookForm = document.getElementById('ositoV2BookingForm');
+    if (bookForm) {
+      bookForm.onsubmit = function(e) {
+        if (e && e.preventDefault) e.preventDefault();
+        var errBox = document.getElementById('v2BookingError');
+        var okBox = document.getElementById('v2BookingSuccess');
+        var btn = document.getElementById('v2BookSubmitBtn');
+        var n = (document.getElementById('v2BookName').value || '').trim();
+        var em = (document.getElementById('v2BookEmail').value || '').trim().toLowerCase();
+        var ph = (document.getElementById('v2BookPhone').value || '').trim();
+        var msg = (document.getElementById('v2BookDetails').value || '').trim();
+
+        if (errBox) errBox.style.display = 'none';
+        if (!n || !isValidEmail(em) || !msg) {
+          if (errBox) {
+            errBox.textContent = 'Please provide your Name, a valid Email Address, and your Program/Birthday Details.';
+            errBox.style.display = 'block';
+          }
+          return false;
+        }
+
+        var inqId = 'INQ-' + Date.now().toString().slice(-4);
+        sendV2CloudRelay({
+          actionType: 'contact_form_inquiry',
+          _subject: 'Website 2.0 Booking Request — 2141 Mission St (' + inqId + ')',
+          _cc: 'alan@ositodrone.com,' + em,
+          _replyto: em,
+          inquiry_id: inqId,
+          studio: '2141 Mission St, Suite 201 (Jan 5 Launch)',
+          name: n,
+          email: em,
+          phone: ph || 'N/A',
+          message: msg,
+          submitted_at: new Date().toISOString()
+        });
+
+        try {
+          var inqs = JSON.parse(localStorage.getItem('osito_contact_submissions_v1') || '[]');
+          if (!Array.isArray(inqs)) inqs = [];
+          inqs.unshift({
+            id: inqId,
+            name: n,
+            email: em,
+            phone: ph || 'N/A',
+            message: '[Website 2.0 • 2141 Mission St] ' + msg,
+            recipient: 'info@ositodrone.com',
+            status: 'New - Unread',
+            deliveryState: 'Sent to info@ositodrone.com',
+            submittedAt: new Date().toISOString(),
+            notes: ''
+          });
+          localStorage.setItem('osito_contact_submissions_v1', JSON.stringify(inqs));
+        } catch (err) {}
+
+        if (btn) btn.textContent = 'REQUEST SENT';
+        if (okBox) okBox.style.display = 'block';
+        bookForm.reset();
+        return false;
+      };
+    }
+
+    // 8. Newsletter Subscribe Form Handler
+    var subForm = document.getElementById('ositoV2SubscribeForm');
+    if (subForm) {
+      subForm.onsubmit = function(e) {
+        if (e && e.preventDefault) e.preventDefault();
+        var emInput = document.getElementById('v2SubEmail');
+        var subBtn = document.getElementById('v2SubBtn');
+        var fb = document.getElementById('v2SubFeedback');
+        var em = (emInput ? emInput.value : '').trim().toLowerCase();
+
+        if (!isValidEmail(em)) {
+          if (fb) {
+            fb.style.display = 'block';
+            fb.style.borderColor = '#EF4444';
+            fb.textContent = 'Please enter a valid email address (for example: pilot@example.com).';
+          }
+          return false;
+        }
+
+        var subId = 'SUB-' + Date.now().toString().slice(-4);
+        var code = String(Math.floor(100000 + Math.random() * 900000));
+        sendV2CloudRelay({
+          actionType: 'newsletter_verification_email',
+          _subject: 'Website 2.0 Newsletter Signup: ' + em + ' (2141 Mission St Launch)',
+          _cc: 'alan@ositodrone.com,' + em,
+          _replyto: em,
+          subscriber_id: subId,
+          name: em.split('@')[0],
+          email: em,
+          verification_code: code,
+          status: 'Verified',
+          message: 'Thank you for joining the Osito Drone 2141 Mission St (Jan 5 Launch) newsletter list! Email: ' + em + ' | Reference Code: ' + code
+        });
+
+        try {
+          var subs = JSON.parse(localStorage.getItem('osito_newsletter_subscribers_v1') || '[]');
+          if (!Array.isArray(subs)) subs = [];
+          subs.unshift({
+            id: subId,
+            email: em,
+            name: em.split('@')[0],
+            segment: '2141 Mission St Studio & Birthdays',
+            status: 'Verified',
+            verifyCode: code,
+            source: 'Website 2.0 Launch Bar',
+            subscribedAt: new Date().toISOString(),
+            verifiedAt: new Date().toISOString(),
+            notes: 'Subscribed via Website 2.0 (2141 Mission St Launch).'
+          });
+          localStorage.setItem('osito_newsletter_subscribers_v1', JSON.stringify(subs));
+        } catch (err) {}
+
+        if (subBtn) subBtn.textContent = 'SUBSCRIBED';
+        if (emInput) emInput.value = '';
+        if (fb) {
+          fb.style.display = 'block';
+          fb.style.borderColor = '#10B981';
+          fb.textContent = 'Thank you! ' + em + ' is on the 2141 Mission St Opening List (Jan 5 launch invites & 25%-Off specials).';
+        }
+        return false;
+      };
+    }
+
+    // 9. No-Code Visual Editor Mode (?editor=1 or ?editor=true)
+    try {
+      var qp = new URLSearchParams(window.location.search);
+      if (qp.get('editor') === '1' || qp.get('editor') === 'true') {
+        var tb = document.getElementById('osito-nocode-toolbar');
+        if (tb) tb.style.display = 'flex';
+        var eds = document.querySelectorAll('.osito-editable');
+        for (var eIdx = 0; eIdx < eds.length; eIdx++) {
+          eds[eIdx].contentEditable = 'true';
+        }
+        var expBtn = document.getElementById('ositoExportHtmlBtn');
+        if (expBtn) {
+          expBtn.onclick = function() {
+            if (tb) tb.style.display = 'none';
+            for (var k = 0; k < eds.length; k++) eds[k].removeAttribute('contenteditable');
+            var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            if (tb) tb.style.display = 'flex';
+            for (var m = 0; m < eds.length; m++) eds[m].contentEditable = 'true';
+            var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'ositodrone-v2-index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          };
+        }
+        var exitBtn = document.getElementById('ositoExitEditorBtn');
+        if (exitBtn) {
+          exitBtn.onclick = function() {
+            window.location.href = window.location.pathname;
+          };
+        }
+      }
+    } catch (e) {}
+  })();
+  </script>
+</body>
+</html>
