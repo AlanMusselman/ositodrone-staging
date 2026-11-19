@@ -1086,8 +1086,8 @@
             </p>
           </div>
           <div>
-            <a href="#book-now" onclick="prefillV2Booking('dropin')" class="btn" style="width:100%; margin-bottom:8px;">RESERVE SPOT (25% OFF)</a>
-            <span class="btn-godaddy-slot" data-godaddy-checkout-slot="dropin">GoDaddy Online Checkout — Opening Jan 5</span>
+            <button type="button" onclick="openOsitoPaymentModal('dropin')" class="btn btn-emerald" style="width:100%; margin-bottom:8px;">PAY &amp; RESERVE ($35) &rarr;</button>
+            <a href="#book-now" onclick="prefillV2Booking('dropin')" class="btn btn-dark" style="width:100%; font-size:12.5px; padding:9px 12px;">REQUEST DATE / QUESTIONS</a>
           </div>
         </div>
 
@@ -1105,8 +1105,8 @@
             </p>
           </div>
           <div>
-            <a href="#book-now" onclick="prefillV2Booking('lab4')" class="btn btn-emerald" style="width:100%; margin-bottom:8px;">BOOK 4-STATION LAB</a>
-            <span class="btn-godaddy-slot" data-godaddy-checkout-slot="lab4">GoDaddy Online Checkout — Opening Jan 5</span>
+            <button type="button" onclick="openOsitoPaymentModal('lab4')" class="btn btn-emerald" style="width:100%; margin-bottom:8px;">PAY $356 DEPOSIT OR $713 FULL &rarr;</button>
+            <a href="#book-now" onclick="prefillV2Booking('lab4')" class="btn btn-dark" style="width:100%; font-size:12.5px; padding:9px 12px;">REQUEST SCHOOL PO / QUOTE</a>
           </div>
         </div>
 
@@ -1124,8 +1124,8 @@
             </p>
           </div>
           <div>
-            <a href="#book-now" onclick="prefillV2Booking('school6')" class="btn btn-dark" style="width:100%; margin-bottom:8px;">RESERVE 6-WEEK COHORT</a>
-            <span class="btn-godaddy-slot" data-godaddy-checkout-slot="school6">GoDaddy Online Checkout — Opening Jan 5</span>
+            <button type="button" onclick="openOsitoPaymentModal('school6')" class="btn btn-emerald" style="width:100%; margin-bottom:8px;">PAY $450 DEPOSIT OR $1,800 FULL &rarr;</button>
+            <a href="#book-now" onclick="prefillV2Booking('school6')" class="btn btn-dark" style="width:100%; font-size:12.5px; padding:9px 12px;">REQUEST SCHOOL PO / INVOICE</a>
           </div>
         </div>
       </div>
@@ -1185,8 +1185,8 @@
           </div>
 
           <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
-            <a href="#book-now" onclick="prefillV2Booking('party')" class="btn btn-emerald">RESERVE A BIRTHDAY DATE ($371)</a>
-            <a href="#studio-2141" class="btn btn-outline-light">SEE THE PARTY SPACE</a>
+            <button type="button" onclick="openOsitoPaymentModal('party')" class="btn btn-emerald">PAY $185 DEPOSIT OR $371 FULL &rarr;</button>
+            <a href="#book-now" onclick="prefillV2Booking('party')" class="btn btn-outline-light">CHECK BIRTHDAY DATES</a>
           </div>
         </div>
 
@@ -1323,8 +1323,8 @@
             <p id="v2EstDesc" style="font-size:12.5px; color:var(--lav); margin:12px 0 0; border-top:1px solid rgba(255,255,255,0.18); padding-top:10px;"></p>
           </div>
 
-          <button type="button" id="v2CopyEstimateBtn" class="btn btn-emerald" style="width:100%; margin-bottom:10px;">COPY ESTIMATE TO BOOKING FORM &rarr;</button>
-          <span class="btn-godaddy-slot" data-godaddy-checkout-slot="estimator">GoDaddy Online Card Checkout — Activating Jan 5</span>
+          <button type="button" id="v2PayEstimateBtn" class="btn btn-emerald" style="width:100%; margin-bottom:10px;">PAY DEPOSIT OR FULL VIA GODADDY &rarr;</button>
+          <button type="button" id="v2CopyEstimateBtn" class="btn btn-dark" style="width:100%; font-size:13px; padding:10px 14px;">OR COPY ESTIMATE TO INQUIRY FORM</button>
         </div>
 
         <!-- Booking & Pre-Registration Form -->
@@ -1524,6 +1524,7 @@
     var perEl = document.getElementById('v2EstPerPilot');
     var descEl = document.getElementById('v2EstDesc');
     var latestEstimateSummary = '';
+    var latestEstimateState = { mode: 'lab4', total: 713, count: 12 };
 
     function updateV2Estimator() {
       if (!typeEl || !countEl) return;
@@ -1567,6 +1568,7 @@
       if (perEl) perEl.textContent = '$' + Math.max(1, Math.round(finalTotal / count)) + ' / pilot';
       if (descEl) descEl.textContent = desc;
 
+      latestEstimateState = { mode: mode, total: finalTotal, count: count };
       latestEstimateSummary =
         'Program: ' + typeEl.options[typeEl.selectedIndex].text + '\n' +
         'Location: 2141 Mission St, Suite 201 (Opening Jan 5, 2027)\n' +
@@ -1595,6 +1597,22 @@
       var detailsEl = document.getElementById('v2BookDetails');
       if (detailsEl) detailsEl.value = latestEstimateSummary;
     };
+
+    var payEstBtn = document.getElementById('v2PayEstimateBtn');
+    if (payEstBtn) {
+      payEstBtn.onclick = function() {
+        if (typeof window.openOsitoPaymentModal === 'function') {
+          var dep = latestEstimateState.mode === 'school6'
+            ? Math.round(latestEstimateState.total * 0.25)
+            : (latestEstimateState.mode === 'dropin' ? latestEstimateState.total : Math.round(latestEstimateState.total * 0.5));
+          window.openOsitoPaymentModal(latestEstimateState.mode, {
+            salePrice: latestEstimateState.total,
+            depositPrice: dep,
+            pilots: latestEstimateState.count
+          });
+        }
+      };
+    }
 
     var copyBtn = document.getElementById('v2CopyEstimateBtn');
     if (copyBtn) {
@@ -1814,5 +1832,6 @@
     } catch (e) {}
   })();
   </script>
+  <script src="./assets/osito-payment-config.js"></script>
 </body>
 </html>

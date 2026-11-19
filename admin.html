@@ -1476,6 +1476,9 @@
         <button type="button" id="btn-tab-newsletter" class="dash-tab-btn" onclick="switchAdminTab('tab-newsletter')">
           5. NEWSLETTER &amp; CONTACT INBOX
         </button>
+        <button type="button" id="btn-tab-payments" class="dash-tab-btn" onclick="switchAdminTab('tab-payments')" style="border-bottom-color:#10B981;">
+          6. GODADDY POS &amp; PAY LINKS
+        </button>
       </div>
     </div>
 
@@ -1985,6 +1988,63 @@ Osito Drone Services | San Francisco, CA</textarea>
             </thead>
             <tbody id="admin-contact-inbox-tbody"></tbody>
           </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         TAB 6: GODADDY PAYMENTS, PAY LINKS & IN-PERSON POS QR HUB
+         ================================================================= -->
+    <section id="tab-payments" class="dash-panel">
+      <div style="background:#232A68; color:#FFFFFF; border:2px solid #10B981; padding:20px 24px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+        <div>
+          <span style="font-family:'Fjalla One',sans-serif; font-size:12px; color:#10B981; text-transform:uppercase; letter-spacing:0.06em;">BANK OF AMERICA CONNECTED • 2141 MISSION ST LAUNCH</span>
+          <h2 style="font-family:'Fjalla One',sans-serif; font-size:24px; margin:4px 0 4px; text-transform:uppercase;">GODADDY PAYMENTS, PAY LINKS &amp; IN-PERSON POS REGISTER</h2>
+          <p style="font-size:13.5px; color:#EEF0FA; margin:0; max-width:760px;">
+            Paste your GoDaddy Pay Link URLs (<code>https://pay.godaddy.com/...</code>) below and click <strong>SAVE &amp; PUBLISH PAY LINKS LIVE</strong>. Every button on Website 2.0 (4-Station Program &amp; Birthdays) immediately routes customers to your GoDaddy Checkout.
+          </p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://dashboard.godaddy.com" target="_blank" rel="noopener" class="osito-action-btn emerald" style="padding:10px 16px; font-size:13px; text-decoration:none;">OPEN GODADDY DASHBOARD &rarr;</a>
+          <button type="button" onclick="saveAdminPayLinks(true)" class="osito-action-btn" style="padding:10px 16px; font-size:13px;">SAVE &amp; PUBLISH LIVE</button>
+        </div>
+      </div>
+
+      <div id="pay-admin-alert" class="admin-alert" role="status" style="margin-bottom:16px;"></div>
+
+      <div style="background:#EEF0FA; border:2px solid #8E93DA; padding:16px 20px; margin-bottom:20px; color:#232A68;">
+        <div style="font-family:'Fjalla One',sans-serif; font-size:15px; text-transform:uppercase; margin-bottom:6px;">3-MINUTE SETUP: HOW TO CREATE YOUR GODADDY PAY LINKS</div>
+        <ol style="margin:0; padding-left:20px; font-size:13.5px; line-height:1.65;">
+          <li>Sign in to <strong>GoDaddy Dashboard</strong> &rarr; <strong>Commerce / Payments</strong> &rarr; <strong>Pay Links</strong> &rarr; <strong>Create Pay Link</strong>.</li>
+          <li>Create fixed-price links for the 5 studio slots below (e.g., <strong>$35</strong> 4-Station Pass, <strong>$356 / $713</strong> 2-Hr Lab, <strong>$450 / $1,800</strong> 6-Wk Cohort, <strong>$185 / $371</strong> VIP Birthday, <strong>$26</strong> 3D Kit).</li>
+          <li>Paste each <code>https://pay.godaddy.com/...</code> link into the table below and click <strong>SAVE &amp; PUBLISH LIVE</strong>. Use <strong>SHOW POS QR</strong> on a phone/tablet at 2141 Mission St for instant tap-to-pay!</li>
+        </ol>
+      </div>
+
+      <div class="crm-table-wrap" style="margin-bottom:22px;">
+        <table class="crm-table">
+          <thead>
+            <tr>
+              <th style="width:210px;">PROGRAM / PACKAGE</th>
+              <th style="width:95px;">FULL ($)</th>
+              <th style="width:95px;">DEPOSIT ($)</th>
+              <th>GODADDY FULL PAY LINK URL</th>
+              <th>GODADDY DEPOSIT PAY LINK URL</th>
+              <th style="width:170px;">POS &amp; PREVIEW</th>
+            </tr>
+          </thead>
+          <tbody id="admin-payments-tbody"></tbody>
+        </table>
+      </div>
+
+      <div id="admin-pos-qr-box" style="display:none; background:#FFFFFF; border:3px solid #232A68; padding:22px; text-align:center; max-width:440px; margin:0 auto 20px;">
+        <div style="font-family:'Fjalla One',sans-serif; font-size:12px; color:#059669; letter-spacing:0.06em;">SCAN TO PAY — OSITO DRONE STUDIO (GODADDY POS)</div>
+        <h3 id="admin-pos-qr-title" style="font-family:'Fjalla One',sans-serif; font-size:22px; color:#232A68; margin:4px 0 12px; text-transform:uppercase;"></h3>
+        <img id="admin-pos-qr-img" src="" alt="GoDaddy POS QR Code" style="width:220px; height:220px; border:2px solid #232A68; display:block; margin:0 auto 12px;" />
+        <div id="admin-pos-qr-url" style="font-size:11.5px; color:#5E5E5E; word-break:break-all; margin-bottom:12px;"></div>
+        <div style="display:flex; gap:8px; justify-content:center;">
+          <a id="admin-pos-qr-open" href="#" target="_blank" rel="noopener" class="osito-action-btn emerald" style="padding:8px 14px; font-size:12.5px; text-decoration:none;">OPEN CHECKOUT</a>
+          <button type="button" onclick="document.getElementById('admin-pos-qr-box').style.display='none'" class="osito-action-btn dark" style="padding:8px 14px; font-size:12.5px;">HIDE QR</button>
         </div>
       </div>
     </section>
@@ -2724,7 +2784,7 @@ Osito Drone Services | San Francisco, CA</textarea>
     }
 
     function switchAdminTab(tabId) {
-      var panels = ['tab-zips', 'tab-crm', 'tab-proposals', 'tab-security', 'tab-newsletter'];
+      var panels = ['tab-zips', 'tab-crm', 'tab-proposals', 'tab-security', 'tab-newsletter', 'tab-payments'];
       for (var i = 0; i < panels.length; i++) {
         var p = document.getElementById(panels[i]);
         var b = document.getElementById('btn-' + panels[i]);
@@ -2744,6 +2804,10 @@ Osito Drone Services | San Francisco, CA</textarea>
         updateNewsletterLivePreview();
         if (typeof syncCloudInquiriesFromNtfy === 'function') {
           syncCloudInquiriesFromNtfy();
+        }
+      } else if (tabId === 'tab-payments') {
+        if (typeof renderAdminPaymentsTab === 'function') {
+          renderAdminPaymentsTab();
         }
       }
     }
@@ -5205,9 +5269,107 @@ Osito Drone Services | San Francisco, CA</textarea>
     }
 
     // =========================================================================
+    // 7B. GODADDY POS & PAY LINKS MANAGER (TAB 6)
+    // =========================================================================
+    function renderAdminPaymentsTab() {
+      var tbody = document.getElementById('admin-payments-tbody');
+      if (!tbody || !window.OSITO_PAYMENT_CONFIG) return;
+      var cfg = window.OSITO_PAYMENT_CONFIG.load();
+      var order = ['dropin', 'lab4', 'school6', 'party', 'kit_addon'];
+      var html = '';
+      for (var i = 0; i < order.length; i++) {
+        var id = order[i];
+        var pkg = cfg[id];
+        if (!pkg) continue;
+        var hasFull = window.OSITO_PAYMENT_CONFIG.isValidPayUrl(pkg.fullPayUrl);
+        var hasDep = window.OSITO_PAYMENT_CONFIG.isValidPayUrl(pkg.depositPayUrl);
+        var statusBadge = (hasFull || hasDep)
+          ? '<span style="display:inline-block; background:#10B981; color:#161616; font-family:\'Fjalla One\',sans-serif; font-size:10.5px; padding:2px 7px;">LIVE LINK ACTIVE</span>'
+          : '<span style="display:inline-block; background:#F59E0B; color:#161616; font-family:\'Fjalla One\',sans-serif; font-size:10.5px; padding:2px 7px;">INVOICE FALLBACK</span>';
+        html += '<tr>' +
+          '<td><strong style="color:#232A68;">' + escapeHtmlSafe(pkg.name) + '</strong><div style="font-size:11.5px; color:#5E5E5E; margin:2px 0 4px;">' + escapeHtmlSafe(pkg.subtitle) + '</div>' + statusBadge + '</td>' +
+          '<td><input type="number" id="pay-full-amt-' + id + '" value="' + escapeHtmlSafe(String(pkg.salePrice)) + '" style="width:78px; padding:6px; border:1px solid #8E93DA; font-weight:700;" /></td>' +
+          '<td><input type="number" id="pay-dep-amt-' + id + '" value="' + escapeHtmlSafe(String(pkg.depositPrice)) + '" style="width:78px; padding:6px; border:1px solid #8E93DA; font-weight:700;" ' + (pkg.allowDepositToggle ? '' : 'disabled') + ' /></td>' +
+          '<td><input type="url" id="pay-full-url-' + id + '" value="' + escapeHtmlSafe(pkg.fullPayUrl || '') + '" placeholder="https://pay.godaddy.com/..." style="width:100%; min-width:190px; padding:6px 8px; border:1px solid #8E93DA; font-size:12px;" /></td>' +
+          '<td><input type="url" id="pay-dep-url-' + id + '" value="' + escapeHtmlSafe(pkg.depositPayUrl || '') + '" placeholder="' + (pkg.allowDepositToggle ? 'https://pay.godaddy.com/...' : 'N/A (Full Pass)') + '" style="width:100%; min-width:190px; padding:6px 8px; border:1px solid #8E93DA; font-size:12px;" ' + (pkg.allowDepositToggle ? '' : 'disabled') + ' /></td>' +
+          '<td><div style="display:flex; flex-direction:column; gap:6px;">' +
+            '<button type="button" class="osito-action-btn emerald" style="padding:6px 10px; font-size:11px;" onclick="showAdminPosQr(\'' + id + '\')">SHOW POS QR</button>' +
+            '<button type="button" class="osito-action-btn dark" style="padding:6px 10px; font-size:11px;" onclick="if(window.openOsitoPaymentModal) openOsitoPaymentModal(\'' + id + '\')">TEST CHECKOUT</button>' +
+          '</div></td>' +
+        '</tr>';
+      }
+      tbody.innerHTML = html;
+    }
+
+    function saveAdminPayLinks(publishCloud) {
+      if (!window.OSITO_PAYMENT_CONFIG) return;
+      var cfg = window.OSITO_PAYMENT_CONFIG.load();
+      var order = ['dropin', 'lab4', 'school6', 'party', 'kit_addon'];
+      var activeCount = 0;
+      for (var i = 0; i < order.length; i++) {
+        var id = order[i];
+        if (!cfg[id]) continue;
+        var fAmt = document.getElementById('pay-full-amt-' + id);
+        var dAmt = document.getElementById('pay-dep-amt-' + id);
+        var fUrl = document.getElementById('pay-full-url-' + id);
+        var dUrl = document.getElementById('pay-dep-url-' + id);
+        if (fAmt && Number(fAmt.value) > 0) cfg[id].salePrice = Number(fAmt.value);
+        if (dAmt && Number(dAmt.value) > 0) cfg[id].depositPrice = Number(dAmt.value);
+        if (fUrl) cfg[id].fullPayUrl = String(fUrl.value || '').trim();
+        if (dUrl) cfg[id].depositPayUrl = String(dUrl.value || '').trim();
+        if (window.OSITO_PAYMENT_CONFIG.isValidPayUrl(cfg[id].fullPayUrl) || window.OSITO_PAYMENT_CONFIG.isValidPayUrl(cfg[id].depositPayUrl)) {
+          activeCount += 1;
+        }
+      }
+      window.OSITO_PAYMENT_CONFIG.save(cfg, Boolean(publishCloud));
+      renderAdminPaymentsTab();
+      var alertEl = document.getElementById('pay-admin-alert');
+      if (alertEl) {
+        alertEl.className = 'admin-alert success';
+        alertEl.textContent = 'Saved GoDaddy Pay Links (' + activeCount + '/5 packages have active GoDaddy URLs) and published to Website 2.0 Cloud Sync!';
+        alertEl.style.display = 'block';
+      }
+    }
+
+    function showAdminPosQr(pkgId) {
+      if (!window.OSITO_PAYMENT_CONFIG) return;
+      var cfg = window.OSITO_PAYMENT_CONFIG.load();
+      var pkg = cfg[pkgId];
+      if (!pkg) return;
+      var chosenUrl = window.OSITO_PAYMENT_CONFIG.isValidPayUrl(pkg.depositPayUrl)
+        ? pkg.depositPayUrl
+        : (window.OSITO_PAYMENT_CONFIG.isValidPayUrl(pkg.fullPayUrl) ? pkg.fullPayUrl : '');
+      var alertEl = document.getElementById('pay-admin-alert');
+      if (!chosenUrl) {
+        if (alertEl) {
+          alertEl.className = 'admin-alert error';
+          alertEl.textContent = 'Paste a valid https://pay.godaddy.com/... link for "' + pkg.name + '" and click SAVE & PUBLISH LIVE first to generate its POS QR code.';
+          alertEl.style.display = 'block';
+        }
+        return;
+      }
+      var qrBox = document.getElementById('admin-pos-qr-box');
+      var qrTitle = document.getElementById('admin-pos-qr-title');
+      var qrImg = document.getElementById('admin-pos-qr-img');
+      var qrUrl = document.getElementById('admin-pos-qr-url');
+      var qrOpen = document.getElementById('admin-pos-qr-open');
+      if (qrTitle) qrTitle.textContent = pkg.name + ' ($' + (chosenUrl === pkg.depositPayUrl ? pkg.depositPrice : pkg.salePrice) + ')';
+      if (qrImg) qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(chosenUrl);
+      if (qrUrl) qrUrl.textContent = chosenUrl;
+      if (qrOpen) qrOpen.href = chosenUrl;
+      if (qrBox) {
+        qrBox.style.display = 'block';
+        if (qrBox.scrollIntoView) qrBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // =========================================================================
     // 8. GLOBAL WINDOW BINDINGS & AUTO-RESTORE STAFF SESSION ON PAGE LOAD
     // =========================================================================
     try {
+      window.renderAdminPaymentsTab = renderAdminPaymentsTab;
+      window.saveAdminPayLinks = saveAdminPayLinks;
+      window.showAdminPosQr = showAdminPosQr;
       window.verifySubscriberAdmin = verifySubscriberAdmin;
       window.adminVerifySubscriberNow = verifySubscriberAdmin;
       window.sendSubscriberVerifyEmailAdmin = sendSubscriberVerifyEmailAdmin;
@@ -5682,5 +5844,6 @@ Osito Drone Services | San Francisco, CA</textarea>
   } catch (err) {}
 })();
 </script>
+<script src="./assets/osito-payment-config.js"></script>
 </body>
 </html>
